@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  #root {
+    @apply h-full;
+  }
+
+  html,
+  body {
+    @applyh-fullselect-nonefont-monoantialiasedtext-whiteoverflow-hidden: ;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  header {
+    -webkit-app-region: drag;
+  }
+
+  button {
+    -webkit-app-region: no-drag;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#555] rounded-md;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+}
+
+#titlebar {
+  @apply flex items-center justify-between pl-2 text-gray-300;
+  background: #1c1c1c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.titlebar-actions {
+  @apply flex items-center;
+}
+.titlebar-icon {
+  @apply py-0.5 cursor-pointer;
+  width: 30px;
+  height: 28px;
+  padding: 4px 6px;
+  text-align: center;
+  cursor: pointer;
+}
+.titlebar-icon:hover {
+  background-color: #383838;
+}
+#ttb-close:hover {
+  @apply text-gray-100 bg-red-500;
+}
+.main {
+  padding-top: 27px;
+}

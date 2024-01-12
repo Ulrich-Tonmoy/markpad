@@ -9,12 +9,13 @@
 
   html,
   body {
-    @applyh-fullselect-nonefont-monoantialiasedtext-whiteoverflow-hidden: ;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+    @apply h-full;
+    @apply select-none;
+    @apply bg-transparent;
+    @apply font-mono antialiased text-white;
+    @apply overflow-hidden;
 
-  header {
-    -webkit-app-region: drag;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   button {
@@ -47,8 +48,8 @@
 }
 .titlebar-icon {
   @apply py-0.5 cursor-pointer;
-  width: 30px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   padding: 4px 6px;
   text-align: center;
   cursor: pointer;

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --dark-bg: rgba(0, 0, 0, 0.5);
+}
+
 @layer base {
   #root {
     @apply h-full;
@@ -15,7 +19,7 @@
     @apply font-mono antialiased text-white;
     @apply overflow-hidden;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--dark-bg);
   }
 
   button {
@@ -37,7 +41,6 @@
 
 .titlebar {
   @apply flex items-center justify-between pl-2 text-gray-300;
-  background: #1c1c1c;
   position: fixed;
   top: 0;
   left: 0;

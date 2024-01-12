@@ -1,15 +1,16 @@
 import { invoke } from "@tauri-apps/api/tauri";
-import { TitleBar } from "./components";
+import { Content, RootLayout, Sidebar, TitleBar } from "./components";
 
 function App() {
   invoke("greet", { name: "name" });
 
   return (
-    <div className="wrapper">
+    <div>
       <TitleBar />
-      <div className="main flex items-start h-screen overflow-hidden bg-primary">
-        <span className="text-4xl text-purple-500">Obsidian</span>
-      </div>
+      <RootLayout>
+        <Sidebar className="p-2">Sidebar</Sidebar>
+        <Content className="border-l bg-zinc-900/50 border-l-white/20">Content</Content>
+      </RootLayout>
     </div>
   );
 }

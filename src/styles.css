@@ -34,7 +34,7 @@
   }
 }
 
-#titlebar {
+.titlebar {
   @apply flex items-center justify-between pl-2 text-gray-300;
   background: #1c1c1c;
   position: fixed;
@@ -56,7 +56,7 @@
 .titlebar-icon:hover {
   background-color: #383838;
 }
-#ttb-close:hover {
+.close:hover {
   @apply text-gray-100 bg-red-500;
 }
 .main {

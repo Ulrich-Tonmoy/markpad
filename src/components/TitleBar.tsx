@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 
-const TitleBar = () => {
+export const TitleBar = () => {
   const [isScaleUp, setIsScaleUp] = useState(false);
 
   const onMinimize = () => appWindow.minimize();
@@ -16,7 +16,7 @@ const TitleBar = () => {
   const onClose = () => appWindow.close();
 
   return (
-    <div id="titlebar" data-tauri-drag-region>
+    <div className="titlebar" data-tauri-drag-region>
       <div className="flex items-center gap-1">
         <img
           src="/logo.png"
@@ -25,9 +25,7 @@ const TitleBar = () => {
           title="Codium"
         />
       </div>
-      <div className="flex items-center justify-center w-1/3 px-2 text-gray-200 rounded-md shadow-sm outline-none cursor-pointer sm:text-sm bg-primary">
-        Obsidian
-      </div>
+      <div className="cursor-default">Obsidian</div>
       <div className="titlebar-actions">
         <img
           className="titlebar-icon"
@@ -54,8 +52,7 @@ const TitleBar = () => {
           />
         )}
         <img
-          id="ttb-close"
-          className="titlebar-icon"
+          className="titlebar-icon close"
           src="close.svg"
           alt="Close"
           title="Close"
@@ -65,5 +62,3 @@ const TitleBar = () => {
     </div>
   );
 };
-
-export default TitleBar;

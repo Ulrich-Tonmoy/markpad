@@ -1,3 +1,3 @@
-import TitleBar from "./TitleBar";
+export * from "./layout";
 
-export { TitleBar };
+export * from "./TitleBar";

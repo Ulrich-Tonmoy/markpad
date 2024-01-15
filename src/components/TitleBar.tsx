@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
+import { useAtomValue } from "jotai";
+import { selectedNoteAtom } from "../store";
 
 export const TitleBar = () => {
   const [isScaleUp, setIsScaleUp] = useState(false);
+  const selectedNote = useAtomValue(selectedNoteAtom);
 
   const onMinimize = () => appWindow.minimize();
   const onScaleUp = () => {
@@ -26,7 +29,7 @@ export const TitleBar = () => {
         />
       </div>
       <div data-tauri-drag-region className="text-purple-500 cursor-default">
-        Obsidian - Note Title
+        Obsidian {selectedNote && `- ${selectedNote.title}`}
       </div>
       <div className="titlebar-actions">
         <img

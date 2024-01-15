@@ -23,7 +23,10 @@ function App() {
       <RootLayout>
         <Sidebar className="p-2">
           <ActionButtonsLayout className="flex justify-between" />
-          <NotePreviewList className="mt-3 space-y-1" onSelect={resetScroll} />
+          <NotePreviewList
+            className="h-[95%] px-2 mt-1 space-y-2 overflow-auto"
+            onSelect={resetScroll}
+          />
         </Sidebar>
         <Content className="border-l bg-zinc-900/50 border-l-white/20">
           <Editor />

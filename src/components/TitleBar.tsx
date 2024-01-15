@@ -25,7 +25,9 @@ export const TitleBar = () => {
           title="Codium"
         />
       </div>
-      <div className="cursor-default">Obsidian</div>
+      <div data-tauri-drag-region className="text-purple-500 cursor-default">
+        Obsidian - Note Title
+      </div>
       <div className="titlebar-actions">
         <img
           className="titlebar-icon"

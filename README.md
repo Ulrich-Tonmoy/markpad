@@ -2,12 +2,16 @@
 
 ### Technologies
 
-- [ ] Tauri
-- [ ] React
-- [ ] TypeScript
-- [ ] Tailwind CSS
-- [ ] Jotai
-- [ ] MDX Editor
+- [x] Tauri
+- [x] React
+- [x] TypeScript
+- [x] Tailwind CSS
+- [x] Jotai
+- [x] MDX Editor
+
+### ToDo
+
+- [ ] More MDX Editor Functionality
 
 This template should help get you started developing with Tauri, React and Typescript in Vite.
 

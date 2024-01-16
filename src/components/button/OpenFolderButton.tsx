@@ -1,22 +1,25 @@
 import { LuFolderSearch } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from ".";
 import { open } from "@tauri-apps/api/dialog";
-import { readDirectory } from "../../utils/fs";
-import { setNotesAtom } from "../../store";
+import { loadNotesAtom, setNotesAtom } from "../../store";
 import { useSetAtom } from "jotai";
+import { useEffect } from "react";
 
 export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
   const setNotes = useSetAtom(setNotesAtom);
+  const loadNotes = useSetAtom(loadNotesAtom);
 
   const openFolder = async () => {
     const selected = await open({
       directory: true,
     });
     if (!selected) return;
-    readDirectory(selected + "\\").then((files) => {
-      setNotes(files, selected + "\\");
-    });
+    setNotes(selected as string);
   };
+
+  useEffect(() => {
+    loadNotes();
+  }, []);
 
   return (
     <ActionButton onClick={openFolder} {...props} title="Open Folder">

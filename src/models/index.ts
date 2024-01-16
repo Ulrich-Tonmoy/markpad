@@ -5,3 +5,7 @@ export type NoteInfo = {
 };
 
 export type NoteContent = string;
+
+export type Obsidian = {
+  lastOpenedDir: string;
+};

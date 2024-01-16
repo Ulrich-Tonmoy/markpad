@@ -10,7 +10,6 @@ import {
 } from "./components";
 
 function App() {
-
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const resetScroll = () => {
@@ -21,7 +20,7 @@ function App() {
     <div>
       <TitleBar />
       <RootLayout>
-        <Sidebar className="p-2">
+        <Sidebar className="p-2 pr-1">
           <ActionButtonsLayout className="flex justify-between" />
           <NotePreviewList
             className="h-[95%] px-2 mt-1 space-y-2 overflow-auto"

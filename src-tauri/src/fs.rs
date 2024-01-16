@@ -76,6 +76,15 @@ pub fn read_file(path: &str) -> String {
 // update file and create new file
 pub fn write_file(path: &str, content: &str) -> String {
     let file_path = Path::new(path);
+
+    if let Some(parent) = file_path.parent() {
+        if !parent.exists() {
+            if let Err(err) = fs::create_dir_all(parent) {
+                return format!("ERROR creating directories: {}", err);
+            }
+        }
+    }
+
     let result = match fs::write(file_path, content) {
         Ok(()) => String::from("OK"),
         Err(_err) => String::from("ERROR"),

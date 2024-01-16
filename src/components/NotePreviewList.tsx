@@ -14,10 +14,7 @@ export const NotePreviewList = ({
 }: NotePreviewListProps) => {
   const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({ onSelect });
 
-  if (!notes) return null;
-
-  // if (isEmpty(notes)) {
-  if (false) {
+  if (!notes) {
     return (
       <ul className={twMerge("text-center pt-4", className)} {...props}>
         <span>No Notes Yet!</span>

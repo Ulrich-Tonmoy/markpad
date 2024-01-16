@@ -1,16 +1,22 @@
 import { atom } from "jotai";
 import { NoteInfo } from "../models";
-import { notesMock } from "./mocks";
 
-export const notesAtom = atom<NoteInfo[]>(notesMock);
-
+export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
+
+export const setNotesAtom = atom(null, async (_, set, notes: NoteInfo[]) => {
+  const sortedNotes = notes.sort(
+    (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
+  );
+
+  set(notesAtom, sortedNotes);
+});
 
 export const selectedNoteAtom = atom((get) => {
   const notes = get(notesAtom);
   const selectedNoteIndex = get(selectedNoteIndexAtom);
 
-  if (selectedNoteIndex == null) return null;
+  if (selectedNoteIndex == null || !notes) return null;
 
   const selectedNote = notes[selectedNoteIndex];
 
@@ -22,6 +28,8 @@ export const selectedNoteAtom = atom((get) => {
 
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom);
+
+  if (!notes) return;
 
   const title = `Untitled ${notes.length + 1}`;
 
@@ -39,7 +47,7 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom);
   const selectedNote = get(selectedNoteAtom);
 
-  if (!selectedNote) return;
+  if (!selectedNote || !notes) return;
 
   set(
     notesAtom,

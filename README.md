@@ -9,8 +9,11 @@
 - [x] Jotai
 - [x] MDX Editor
 
-### ToDo
+### Feature
 
+- [x] Open a folder will load all `.md` files in that folder.
+- [x] Create and Delete notes.
+- [x] On App launch Open the last Opened folder.
 - [ ] More MDX Editor Functionality
 
 This template should help get you started developing with Tauri, React and Typescript in Vite.

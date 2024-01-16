@@ -61,8 +61,16 @@ pub fn read_folder(dir_path: &str) -> String {
 }
 
 pub fn read_file(path: &str) -> String {
-    let contents = fs::read_to_string(path).expect("ERROR");
-    contents
+    let file_path = Path::new(path);
+
+    if file_path.exists() {
+        match fs::read_to_string(file_path) {
+            Ok(contents) => contents,
+            Err(err) => format!("ERROR: {}", err),
+        }
+    } else {
+        format!("ERROR")
+    }
 }
 
 // update file and create new file

@@ -1,16 +1,21 @@
 import { atom } from "jotai";
 import { NoteInfo } from "../models";
 
+const openedFolderPath = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
 
-export const setNotesAtom = atom(null, async (_, set, notes: NoteInfo[]) => {
-  const sortedNotes = notes.sort(
-    (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
-  );
+export const setNotesAtom = atom(
+  null,
+  async (_, set, notes: NoteInfo[], dirPath: string) => {
+    const sortedNotes = notes.sort(
+      (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
+    );
 
-  set(notesAtom, sortedNotes);
-});
+    set(openedFolderPath, dirPath);
+    set(notesAtom, sortedNotes);
+  },
+);
 
 export const selectedNoteAtom = atom((get) => {
   const notes = get(notesAtom);

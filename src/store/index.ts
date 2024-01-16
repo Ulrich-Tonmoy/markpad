@@ -1,21 +1,43 @@
 import { atom } from "jotai";
-import { NoteInfo } from "../models";
+import { NoteInfo, Obsidian } from "../models";
+import { dataDir } from "@tauri-apps/api/path";
+import { readDirectory, readFile, writeFile } from "../utils/fs";
 
+const dataDirPath = (await dataDir()) + `Obsidian\\obsidian.json`;
 const openedFolderPath = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
 
-export const setNotesAtom = atom(
-  null,
-  async (_, set, notes: NoteInfo[], dirPath: string) => {
-    const sortedNotes = notes.sort(
+export const loadNotesAtom = atom(null, async (_, set) => {
+  readFile(dataDirPath).then((res: string) => {
+    if (res !== "ERROR") {
+      const obsidian: Obsidian = JSON.parse(res);
+
+      readDirectory(obsidian.lastOpenedDir).then((files) => {
+        const sortedNotes = files.sort(
+          (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
+        );
+        set(openedFolderPath, obsidian.lastOpenedDir);
+        set(notesAtom, sortedNotes);
+      });
+    }
+  });
+});
+
+export const setNotesAtom = atom(null, async (_, set, dirPath: string) => {
+  const fullPath = dirPath + "\\";
+
+  readDirectory(fullPath).then((files) => {
+    const data = { lastOpenedDir: fullPath };
+    writeFile(dataDirPath, JSON.stringify(data));
+
+    const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
     );
-
-    set(openedFolderPath, dirPath);
+    set(openedFolderPath, fullPath);
     set(notesAtom, sortedNotes);
-  },
-);
+  });
+});
 
 export const selectedNoteAtom = atom((get) => {
   const notes = get(notesAtom);

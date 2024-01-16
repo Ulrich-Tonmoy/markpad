@@ -27,6 +27,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
 
   const newNote: NoteInfo = {
     title,
+    path: "",
     lastEditTime: Date.now(),
   };
 

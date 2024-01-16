@@ -19,7 +19,10 @@ export const TitleBar = () => {
   const onClose = () => appWindow.close();
 
   return (
-    <div className="titlebar" data-tauri-drag-region>
+    <div
+      className="fixed top-0 left-0 right-0 flex items-center justify-between pl-2 text-gray-300"
+      data-tauri-drag-region
+    >
       <div className="flex items-center gap-1">
         <img
           src="/logo.png"
@@ -31,9 +34,9 @@ export const TitleBar = () => {
       <div data-tauri-drag-region className="text-purple-500 cursor-default">
         Obsidian {selectedNote && `- ${selectedNote.title}`}
       </div>
-      <div className="titlebar-actions">
+      <div className="flex items-center">
         <img
-          className="titlebar-icon"
+          className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-gray-800"
           src="/minimize.svg"
           alt="Minimize"
           title="Minimize"
@@ -41,7 +44,7 @@ export const TitleBar = () => {
         />
         {isScaleUp ? (
           <img
-            className="titlebar-icon"
+            className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-gray-800"
             src="restore-down.svg"
             alt="Restore Down"
             title="Restore Down"
@@ -49,7 +52,7 @@ export const TitleBar = () => {
           />
         ) : (
           <img
-            className="titlebar-icon"
+            className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-gray-800"
             src="maximize.svg"
             alt="Maximize"
             title="Maximize"
@@ -57,7 +60,7 @@ export const TitleBar = () => {
           />
         )}
         <img
-          className="titlebar-icon close"
+          className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:text-gray-100 hover:bg-red-500"
           src="close.svg"
           alt="Close"
           title="Close"

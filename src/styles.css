@@ -4,6 +4,10 @@
 
 :root {
   --dark-bg: rgba(0, 0, 0, 0.5);
+  --dark-thumb: rgba(85, 85, 85, 0.5);
+
+  --purple-bg: rgba(18, 2, 34, 0.5);
+  --purple-thumb: rgba(146, 51, 234, 0.5);
 }
 
 @layer base {
@@ -18,8 +22,7 @@
     @apply bg-transparent;
     @apply font-mono antialiased text-white;
     @apply overflow-hidden;
-
-    background-color: var(--dark-bg);
+    @apply bg-[var(--dark-bg)];
   }
 
   button {
@@ -31,38 +34,10 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-[#9233ea8e] rounded-md;
+    @apply bg-[var(--dark-thumb)] rounded-md;
   }
 
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
-}
-
-.titlebar {
-  @apply flex items-center justify-between pl-2 text-gray-300;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.titlebar-actions {
-  @apply flex items-center;
-}
-.titlebar-icon {
-  @apply py-0.5 cursor-pointer;
-  width: 25px;
-  height: 25px;
-  padding: 4px 6px;
-  text-align: center;
-  cursor: pointer;
-}
-.titlebar-icon:hover {
-  background-color: #383838;
-}
-.close:hover {
-  @apply text-gray-100 bg-red-500;
-}
-.main {
-  padding-top: 27px;
 }

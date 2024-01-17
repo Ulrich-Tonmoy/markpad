@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 import { NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
-import { readDirectory, readFile, writeFile } from "@/utils";
+import { CONFIG_FILE_NAME, readDirectory, readFile, writeFile } from "@/utils";
 
-const dataDirPath = (await dataDir()) + `Obsidian\\obsidian.json`;
+const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;
 const openedFolderPath = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);

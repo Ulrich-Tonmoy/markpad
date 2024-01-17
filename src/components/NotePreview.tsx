@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { NoteInfo } from "@/models";
-import { cn, formatDateFromMs } from "@/utils";
+import { cn, formatDateFromMs } from "@/libs";
 
 export type NotePreviewProps = NoteInfo & {
   isActive?: boolean;

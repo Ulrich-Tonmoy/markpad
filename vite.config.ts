@@ -14,11 +14,11 @@ export default defineConfig(async () => ({
   },
   resolve: {
     alias: {
-      "@/components": resolve(__dirname, "./src/components"),
-      "@/hooks": resolve(__dirname, "./src/hooks"),
-      "@/models": resolve(__dirname, "./src/models"),
-      "@/store": resolve(__dirname, "./src/store"),
-      "@/utils": resolve(__dirname, "./src/utils"),
+      "@/components": resolve(__dirname, "src/components"),
+      "@/hooks": resolve(__dirname, "src/hooks"),
+      "@/models": resolve(__dirname, "src/models"),
+      "@/store": resolve(__dirname, "src/store"),
+      "@/libs": resolve(__dirname, "src/libs"),
     },
   },
 }));

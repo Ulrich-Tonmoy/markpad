@@ -22,11 +22,11 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/components": ["./src/components"],
-      "@/hooks": ["./src/hooks"],
-      "@/models": ["./src/models"],
-      "@/store": ["./src/store"],
-      "@/utils": ["./src/utils"]
+      "@/components": ["src/components"],
+      "@/hooks": ["src/hooks"],
+      "@/models": ["src/models"],
+      "@/store": ["src/store"],
+      "@/libs": ["src/libs"]
     }
   },
   "include": ["src"],

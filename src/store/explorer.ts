@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { NoteInfo, Obsidian } from "@/models";
+import { NoteContent, NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import { CONFIG_FILE_NAME, readDirectory, readFile, writeFile } from "@/libs";
 import { unwrap } from "jotai/utils";
@@ -66,6 +66,29 @@ export const selectedNoteAtom = unwrap(
       lastEditTime: Date.now(),
     },
 );
+
+export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent) => {
+  const notes = get(notesAtom);
+  const selectedNote = get(selectedNoteAtom);
+
+  if (!selectedNote || !notes) return;
+
+  await writeFile(selectedNote.path, newContent);
+
+  set(
+    notesAtom,
+    notes.map((note) => {
+      if (note.title === selectedNote.title) {
+        return {
+          ...note,
+          lastEditTime: Date.now(),
+        };
+      }
+
+      return note;
+    }),
+  );
+});
 
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom);

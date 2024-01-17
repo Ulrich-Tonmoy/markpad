@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { DeleteNoteButton, NewNoteButton } from "..";
-import { OpenFolderButton } from "../button/OpenFolderButton";
+import { OpenFolderButton } from "@/components";
 
 export const ActionButtonsLayout = ({ ...props }: ComponentProps<"div">) => {
   return (

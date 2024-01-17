@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from "jotai";
-import { selectedNoteAtom } from "../store";
+import { selectedNoteAtom } from "@/store";
 import { useRef } from "react";
 import { MDXEditorMethods } from "@mdxeditor/editor";
 

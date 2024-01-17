@@ -1,7 +1,7 @@
 import { LuFolderSearch } from "react-icons/lu";
-import { ActionButton, ActionButtonProps } from ".";
+import { ActionButton, ActionButtonProps } from "@/components";
 import { open } from "@tauri-apps/api/dialog";
-import { loadNotesAtom, setNotesAtom } from "../../store";
+import { loadNotesAtom, setNotesAtom } from "@/store";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 

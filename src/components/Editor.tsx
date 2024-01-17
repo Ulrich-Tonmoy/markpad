@@ -9,7 +9,7 @@ import {
   quotePlugin,
   tablePlugin,
 } from "@mdxeditor/editor";
-import { useEditor } from "../hooks/useEditor";
+import { useEditor } from "@/hooks";
 
 export const Editor = () => {
   const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useEditor();

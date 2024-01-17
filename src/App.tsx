@@ -7,7 +7,7 @@ import {
   RootLayout,
   Sidebar,
   TitleBar,
-} from "./components";
+} from "@/components";
 
 function App() {
   const contentContainerRef = useRef<HTMLDivElement>(null);

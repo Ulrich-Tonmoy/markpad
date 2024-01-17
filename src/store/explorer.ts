@@ -2,6 +2,7 @@ import { atom } from "jotai";
 import { NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import { CONFIG_FILE_NAME, readDirectory, readFile, writeFile } from "@/libs";
+import { unwrap } from "jotai/utils";
 
 const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;
 const openedFolderPath = atom<string>("");
@@ -39,7 +40,7 @@ export const setNotesAtom = atom(null, async (_, set, dirPath: string) => {
   });
 });
 
-export const selectedNoteAtom = atom((get) => {
+const selectedNoteAtomAsync = atom(async (get) => {
   const notes = get(notesAtom);
   const selectedNoteIndex = get(selectedNoteIndexAtom);
 
@@ -47,11 +48,24 @@ export const selectedNoteAtom = atom((get) => {
 
   const selectedNote = notes[selectedNoteIndex];
 
+  const noteContent = await readFile(selectedNote.path);
+
   return {
     ...selectedNote,
-    content: `# Selected Note Index ${selectedNoteIndex}`,
+    content: noteContent,
   };
 });
+
+export const selectedNoteAtom = unwrap(
+  selectedNoteAtomAsync,
+  (prev) =>
+    prev ?? {
+      title: "",
+      path: "",
+      content: "",
+      lastEditTime: Date.now(),
+    },
+);
 
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom);

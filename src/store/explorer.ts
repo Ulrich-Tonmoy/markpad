@@ -3,7 +3,7 @@ import { NoteContent, NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import { CONFIG_FILE_NAME, deleteFile, readDirectory, readFile, writeFile } from "@/libs";
 import { unwrap } from "jotai/utils";
-import { ask, confirm, message, open, save } from "@tauri-apps/api/dialog";
+import { ask, message, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
 
 const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;

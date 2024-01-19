@@ -3,6 +3,8 @@ import { NoteContent, NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import { CONFIG_FILE_NAME, readDirectory, readFile, writeFile } from "@/libs";
 import { unwrap } from "jotai/utils";
+import { save } from "@tauri-apps/api/dialog";
+import { basename } from "@tauri-apps/api/path";
 
 const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;
 const openedFolderPath = atom<string>("");
@@ -91,20 +93,34 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 });
 
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
-  const notes = get(notesAtom);
+  const notes = get(notesAtom) ?? [];
+  const path = get(openedFolderPath);
 
-  if (!notes) return;
+  const newFile = await save({
+    title: "Create a new File",
+    defaultPath: path + "Untitled.md",
+    filters: [
+      {
+        name: "Obsidian File",
+        extensions: ["md"],
+      },
+    ],
+  });
 
-  const title = `Untitled ${notes.length + 1}`;
+  if (newFile) {
+    const title = (await basename(newFile)).split(".")[0];
 
-  const newNote: NoteInfo = {
-    title,
-    path: "",
-    lastEditTime: Date.now(),
-  };
+    await writeFile(newFile, "");
 
-  set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
-  set(selectedNoteIndexAtom, 0);
+    const newNote: NoteInfo = {
+      title,
+      path: newFile,
+      lastEditTime: Date.now(),
+    };
+
+    set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
+    set(selectedNoteIndexAtom, 0);
+  }
 });
 
 export const deleteNoteAtom = atom(null, async (get, set) => {

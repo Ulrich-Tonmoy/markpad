@@ -39,6 +39,7 @@ export const openNotesAtom = atom(null, async (_, set) => {
   readDirectory(fullPath).then((files) => {
     const data = { lastOpenedDir: fullPath };
     writeFile(dataDirPath, JSON.stringify(data));
+    if (!files.length) return;
 
     const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,

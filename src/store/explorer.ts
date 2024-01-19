@@ -3,7 +3,7 @@ import { NoteContent, NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import { CONFIG_FILE_NAME, readDirectory, readFile, writeFile } from "@/libs";
 import { unwrap } from "jotai/utils";
-import { save } from "@tauri-apps/api/dialog";
+import { open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
 
 const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;
@@ -27,8 +27,13 @@ export const loadNotesAtom = atom(null, async (_, set) => {
   });
 });
 
-export const setNotesAtom = atom(null, async (_, set, dirPath: string) => {
-  const fullPath = dirPath + "\\";
+export const openNotesAtom = atom(null, async (_, set) => {
+  const selected = await open({
+    directory: true,
+  });
+  if (!selected) return;
+
+  const fullPath = selected + "\\";
 
   readDirectory(fullPath).then((files) => {
     const data = { lastOpenedDir: fullPath };

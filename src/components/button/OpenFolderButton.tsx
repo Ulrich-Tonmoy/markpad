@@ -1,20 +1,15 @@
 import { LuFolderSearch } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { open } from "@tauri-apps/api/dialog";
-import { loadNotesAtom, setNotesAtom } from "@/store";
+import { loadNotesAtom, openNotesAtom } from "@/store";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
 export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
-  const setNotes = useSetAtom(setNotesAtom);
+  const openNotes = useSetAtom(openNotesAtom);
   const loadNotes = useSetAtom(loadNotesAtom);
 
   const openFolder = async () => {
-    const selected = await open({
-      directory: true,
-    });
-    if (!selected) return;
-    setNotes(selected as string);
+    openNotes();
   };
 
   useEffect(() => {

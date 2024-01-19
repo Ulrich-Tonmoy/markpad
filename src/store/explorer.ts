@@ -107,20 +107,20 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
     ],
   });
 
-  if (newFile) {
-    const title = (await basename(newFile)).split(".")[0];
+  if (!newFile) return;
 
-    await writeFile(newFile, "");
+  const title = (await basename(newFile)).split(".")[0];
 
-    const newNote: NoteInfo = {
-      title,
-      path: newFile,
-      lastEditTime: Date.now(),
-    };
+  await writeFile(newFile, "");
 
-    set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
-    set(selectedNoteIndexAtom, 0);
-  }
+  const newNote: NoteInfo = {
+    title,
+    path: newFile,
+    lastEditTime: Date.now(),
+  };
+
+  set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
+  set(selectedNoteIndexAtom, 0);
 });
 
 export const deleteNoteAtom = atom(null, async (get, set) => {

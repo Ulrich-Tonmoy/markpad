@@ -17,6 +17,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
       const obsidian: Obsidian = JSON.parse(res);
 
       readDirectory(obsidian.lastOpenedDir).then((files) => {
+        if (!files.length) return;
         const sortedNotes = files.sort(
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );

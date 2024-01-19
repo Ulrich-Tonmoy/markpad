@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 import { NoteContent, NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
-import { CONFIG_FILE_NAME, readDirectory, readFile, writeFile } from "@/libs";
+import { CONFIG_FILE_NAME, deleteFile, readDirectory, readFile, writeFile } from "@/libs";
 import { unwrap } from "jotai/utils";
-import { open, save } from "@tauri-apps/api/dialog";
+import { ask, confirm, message, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
 
 const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;
@@ -133,6 +133,24 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
   const selectedNote = get(selectedNoteAtom);
 
   if (!selectedNote || !notes) return;
+
+  const confirmed = await ask(
+    `Are you sure you want to delete ${selectedNote.title}.md?\nThis action cannot be reverted.`,
+    {
+      title: `Are you sure you want to delete ${selectedNote.title}.md`,
+      type: "warning",
+    },
+  );
+
+  if (!confirmed) return;
+
+  const isDeleted = deleteFile(selectedNote.path);
+  if (!isDeleted) return;
+
+  await message(`${selectedNote.title}.md have been delete successfully.`, {
+    title: "Ok",
+    type: "info",
+  });
 
   set(
     notesAtom,

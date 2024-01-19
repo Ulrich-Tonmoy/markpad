@@ -6,13 +6,17 @@ import { unwrap } from "jotai/utils";
 import { ask, message, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
 
-const dataDirPath = (await dataDir()) + CONFIG_FILE_NAME;
+const dataDirPath = async () => {
+  return (await dataDir()) + CONFIG_FILE_NAME;
+};
+
 const openedFolderPath = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
 
 export const loadNotesAtom = atom(null, async (_, set) => {
-  readFile(dataDirPath).then((res: string) => {
+  const dirPath = await dataDirPath();
+  readFile(dirPath).then((res: string) => {
     if (res !== "ERROR") {
       const obsidian: Obsidian = JSON.parse(res);
 
@@ -35,11 +39,11 @@ export const openNotesAtom = atom(null, async (_, set) => {
   if (!selected) return;
 
   const fullPath = selected + "\\";
+  const dirPath = await dataDirPath();
 
   readDirectory(fullPath).then((files) => {
     const data = { lastOpenedDir: fullPath };
-    writeFile(dataDirPath, JSON.stringify(data));
-    if (!files.length) return;
+    writeFile(dirPath, JSON.stringify(data));
 
     const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
@@ -80,7 +84,7 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
   const notes = get(notesAtom);
   const selectedNote = get(selectedNoteAtom);
 
-  if (!selectedNote || !notes) return;
+  if (!selectedNote || !notes?.length) return;
 
   await writeFile(selectedNote.path, newContent);
 
@@ -134,7 +138,7 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom);
   const selectedNote = get(selectedNoteAtom);
 
-  if (!selectedNote || !notes) return;
+  if (!selectedNote || !notes?.length) return;
 
   const confirmed = await ask(
     `Are you sure you want to delete ${selectedNote.title}.md?\nThis action cannot be reverted.`,

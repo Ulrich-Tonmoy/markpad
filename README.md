@@ -1,6 +1,13 @@
-# Obsidian
+<div  align="center">
+    <img src="./docs/logo.png" alt="Obsidian Logo" title="Obsidian" width="200"/>
+    <h1>Obsidian</h1>
+    <h3>A Simple MarkDown Editor built with Tauri.</h3>
+</div>
 
-A simple markdown editor.
+<div  align="center">
+    <img src="./docs/obsidian.png" alt="Obsidian" width="330"/>
+    <img src="./docs/obsidian2.png" alt="Obsidian" width="330"/>
+</div>
 
 Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [NoteMark Repo](https://github.com/gionathas/NoteMark). I added few additional features and used `Tauri` instead of `Electron` as i already had some idea about tauri from [this project](https://github.com/Ulrich-Tonmoy/codium) i'm still working on.
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 import { useAtomValue } from "jotai";
-import { selectedNoteAtom } from "../store";
+import { selectedNoteAtom } from "@/store";
 
 export const TitleBar = () => {
   const [isScaleUp, setIsScaleUp] = useState(false);

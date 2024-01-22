@@ -2,15 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --dark-bg: rgba(0, 0, 0, 0.5);
-  --dark-thumb: rgba(85, 85, 85, 0.5);
-
-  --purple-bg: rgba(18, 2, 34, 0.5);
-  --purple-thumb: rgba(146, 51, 234, 0.5);
-}
-
 @layer base {
+  :root {
+    --thumb: rgba(85, 85, 85, 0.5);
+    --primary: rgba(0, 0, 0, 0.5);
+    --secondary: rgba(113, 113, 122, 0.75);
+    --active: rgba(161, 161, 170, 0.75);
+    --hover: rgba(82, 82, 91, 0.5);
+    --border: rgba(161, 161, 170, 0.5);
+    --text: rgba(212, 212, 216, 1);
+    --cursor: rgba(255, 255, 255, 1);
+  }
+
+  :root[data-theme="dark"] {
+    --thumb: rgba(85, 85, 85, 1);
+    --primary: rgba(0, 0, 0, 1);
+    --secondary: rgba(113, 113, 122, 1);
+    --active: rgba(161, 161, 170, 1);
+    --hover: rgba(82, 82, 91, 1);
+    --border: rgba(161, 161, 170, 1);
+    --text: rgba(212, 212, 216, 1);
+    --cursor: rgba(255, 255, 255, 1);
+  }
+
+  :root[data-theme="purple"] {
+    --thumb: rgba(146, 51, 234, 0.5);
+    --primary: rgba(18, 2, 34, 0.5);
+    --secondary: rgba(168, 85, 247, 0.75);
+    --active: rgba(192, 132, 252, 0.5);
+    --hover: rgba(147, 51, 234, 0.5);
+    --border: rgba(192, 132, 252, 0.5);
+    --text: rgba(168, 85, 247, 1);
+    --cursor: rgba(168, 85, 247, 1);
+  }
+
+  :root[data-theme="green"] {
+    --thumb: rgba(51, 234, 146, 0.5);
+    --primary: rgba(2, 34, 18, 0.5);
+    --secondary: rgba(85, 247, 168, 0.75);
+    --active: rgba(132, 252, 192, 0.5);
+    --hover: rgba(51, 234, 147, 0.5);
+    --border: rgba(132, 252, 192, 0.5);
+    --text: rgba(85, 247, 168, 1);
+    --cursor: rgba(85, 247, 168, 1);
+  }
+
+  :root[data-theme="red"] {
+    --thumb: rgba(234, 51, 51, 0.5);
+    --primary: rgba(34, 2, 18, 0.5);
+    --secondary: rgba(247, 85, 85, 0.75);
+    --active: rgba(252, 132, 132, 0.5);
+    --hover: rgba(234, 51, 52, 0.5);
+    --border: rgba(252, 132, 132, 0.5);
+    --text: rgba(247, 85, 85, 1);
+    --cursor: rgba(247, 85, 85, 1);
+  }
+
+  :root[data-theme="yellow"] {
+    --thumb: rgba(234, 234, 51, 0.5);
+    --primary: rgba(18, 18, 2, 0.5);
+    --secondary: rgba(247, 247, 85, 0.75);
+    --active: rgba(252, 252, 132, 0.5);
+    --hover: rgba(234, 234, 51, 0.5);
+    --border: rgba(252, 252, 132, 0.5);
+    --text: rgba(247, 247, 85, 1);
+    --cursor: rgba(247, 247, 85, 1);
+  }
+
+  :root[data-theme="blue"] {
+    --thumb: rgba(51, 146, 234, 0.5);
+    --primary: rgba(18, 34, 2, 0.5);
+    --secondary: rgba(85, 168, 247, 0.75);
+    --active: rgba(132, 192, 252, 0.5);
+    --hover: rgba(51, 147, 234, 0.5);
+    --border: rgba(132, 192, 252, 0.5);
+    --text: rgba(85, 168, 247, 1);
+    --cursor: rgba(85, 168, 247, 1);
+  }
+
   #root {
     @apply h-full;
   }
@@ -22,7 +91,7 @@
     @apply bg-transparent;
     @apply font-mono antialiased text-white;
     @apply overflow-hidden;
-    @apply bg-[var(--dark-bg)];
+    @apply bg-primary;
   }
 
   button {
@@ -34,7 +103,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-[var(--dark-thumb)] rounded-md;
+    @apply rounded-md bg-[var(--thumb)];
   }
 
   ::-webkit-scrollbar-track {

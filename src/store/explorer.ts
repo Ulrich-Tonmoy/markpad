@@ -3,7 +3,7 @@ import { NoteContent, NoteInfo, Obsidian } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import { CONFIG_FILE_NAME, deleteFile, readDirectory, readFile, writeFile } from "@/libs";
 import { unwrap } from "jotai/utils";
-import { ask, message, open, save } from "@tauri-apps/api/dialog";
+import { ask, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
 
 const dataDirPath = async () => {
@@ -154,10 +154,10 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
   const isDeleted = deleteFile(selectedNote.path);
   if (!isDeleted) return;
 
-  await message(`${selectedNote.title}.md have been delete successfully.`, {
-    title: "Ok",
-    type: "info",
-  });
+  // await message(`${selectedNote.title}.md have been delete successfully.`, {
+  //   title: "Ok",
+  //   type: "info",
+  // });
 
   set(
     notesAtom,

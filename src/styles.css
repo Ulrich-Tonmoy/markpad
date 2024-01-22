@@ -71,7 +71,7 @@
 
   :root[data-theme="blue"] {
     --thumb: rgba(51, 146, 234, 0.5);
-    --primary: rgba(18, 34, 2, 0.5);
+    --primary: rgba(2, 34, 30, 0.5);
     --secondary: rgba(85, 168, 247, 0.75);
     --active: rgba(132, 192, 252, 0.5);
     --hover: rgba(51, 147, 234, 0.5);

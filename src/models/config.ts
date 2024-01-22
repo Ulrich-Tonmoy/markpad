@@ -1,3 +1,4 @@
-export type Obsidian = {
+export type ObsidianConfig = {
   lastOpenedDir: string;
+  theme: string;
 };

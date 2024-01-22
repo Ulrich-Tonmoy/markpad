@@ -10,7 +10,7 @@ const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
 };
 
-const openedFolderPath = atom<string>("");
+export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
 
@@ -21,11 +21,12 @@ export const loadNotesAtom = atom(null, async (_, set) => {
       const obsidian: Obsidian = JSON.parse(res);
 
       readDirectory(obsidian.lastOpenedDir).then((files) => {
+        set(openedFolderPathAtom, obsidian.lastOpenedDir);
+
         if (!files.length) return;
         const sortedNotes = files.sort(
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );
-        set(openedFolderPath, obsidian.lastOpenedDir);
         set(notesAtom, sortedNotes);
       });
     }
@@ -48,7 +49,7 @@ export const openNotesAtom = atom(null, async (_, set) => {
     const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
     );
-    set(openedFolderPath, fullPath);
+    set(openedFolderPathAtom, fullPath);
     set(notesAtom, sortedNotes);
   });
 });
@@ -105,7 +106,7 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom) ?? [];
-  const path = get(openedFolderPath);
+  const path = get(openedFolderPathAtom);
 
   const newFile = await save({
     title: "Create a new File",

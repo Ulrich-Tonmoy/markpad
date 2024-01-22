@@ -1,8 +1,9 @@
 import { useAtom, useAtomValue } from "jotai";
-import { notesAtom, selectedNoteIndexAtom } from "@/store";
+import { notesAtom, openedFolderPathAtom, selectedNoteIndexAtom } from "@/store";
 
 export const useNotesList = ({ onSelect }: { onSelect?: () => void }) => {
   const notes = useAtomValue(notesAtom);
+  const openedFolderPath = useAtomValue(openedFolderPathAtom);
   const [selectedNoteIndex, setSelectedNoteIndex] = useAtom(selectedNoteIndexAtom);
 
   const handleNoteSelect = (index: number) => async () => {
@@ -15,6 +16,7 @@ export const useNotesList = ({ onSelect }: { onSelect?: () => void }) => {
 
   return {
     notes,
+    openedFolderPath,
     selectedNoteIndex,
     handleNoteSelect,
   };

@@ -16,6 +16,7 @@ Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [
 - [x] Open a folder will load all `.md` files in that folder.
 - [x] Create and Delete notes.
 - [x] On App launch Open the last Opened folder.
+- [x] If no folder is opened will show msg to open one.
 - [ ] More MDX Editor Functionality
 - [ ] Add Theming
 - [ ] [Configure installer](https://tauri.app/v1/guides/building/windows)

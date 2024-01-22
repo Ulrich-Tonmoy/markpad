@@ -1,15 +1,20 @@
+import { configAtom, updateThemeAtom } from "@/store";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 
 export const ThemeInfo = () => {
+  const config = useAtomValue(configAtom);
+  const updateTheme = useSetAtom(updateThemeAtom);
   const [currentTheme, setCurrentTheme] = useState<string>("");
 
   const setTheme = (theme: string) => {
     document.documentElement.setAttribute("data-theme", theme);
+    updateTheme(theme);
     setCurrentTheme(theme);
   };
 
   useEffect(() => {
-    setCurrentTheme(localStorage.getItem("theme") ?? "");
+    setCurrentTheme(config.theme);
   }, []);
 
   return (

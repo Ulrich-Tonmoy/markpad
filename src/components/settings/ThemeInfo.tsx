@@ -14,11 +14,13 @@ export const ThemeInfo = () => {
   };
 
   useEffect(() => {
-    setCurrentTheme(config.theme);
+    return () => {
+      setCurrentTheme(config.theme);
+    };
   }, []);
 
   return (
-    <div className="p-4">
+    <>
       <h2>Manage Themes</h2>
       <div className="flex mt-2 space-x-4">
         <button
@@ -64,6 +66,6 @@ export const ThemeInfo = () => {
           disabled={currentTheme === "purple"}
         />
       </div>
-    </div>
+    </>
   );
 };

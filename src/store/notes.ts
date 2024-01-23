@@ -5,6 +5,7 @@ import {
   CONFIG_FILE_NAME,
   FILE_EXTENSION,
   View,
+  WELCOME_CONTENT,
   deleteFile,
   readDirectory,
   readFile,
@@ -26,6 +27,7 @@ export const viewAtom = atom<View>(View.Editor);
 export const configAtom = atom<ObsidianConfig>({
   lastOpenedDir: "",
   theme: "",
+  welcomeContent: true,
 });
 
 export const updateThemeAtom = atom(null, async (get, set, theme: string) => {
@@ -39,6 +41,14 @@ export const updateThemeAtom = atom(null, async (get, set, theme: string) => {
 export const updateViewAtom = atom(null, async (_, set, view: View) => {
   set(viewAtom, view);
   if (view === View.Settings) set(selectedNoteIndexAtom, null);
+});
+
+export const updateWelcomeContentAtom = atom(null, async (get, set, show: boolean) => {
+  const dirPath = await dataDirPath();
+  const config = get(configAtom);
+  config.welcomeContent = show;
+  writeFile(dirPath, JSON.stringify(config));
+  set(configAtom, config);
 });
 
 export const loadNotesAtom = atom(null, async (_, set) => {
@@ -140,7 +150,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
 
   const newFile = await save({
     title: "Create a new File",
-    defaultPath: path + "Untitled" + FILE_EXTENSION,
+    defaultPath: path + "Untitled" + notes.length,
     filters: [
       {
         name: "Obsidian File",
@@ -153,7 +163,9 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
 
   const title = (await basename(newFile)).split(".")[0];
 
-  await writeFile(newFile, "");
+  const config = get(configAtom);
+  if (config.welcomeContent) await writeFile(newFile, WELCOME_CONTENT);
+  else await writeFile(newFile, "");
 
   const newNote: NoteInfo = {
     title,
@@ -161,6 +173,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
     lastEditTime: Date.now(),
   };
 
+  set(viewAtom, View.Editor);
   set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
   set(selectedNoteIndexAtom, 0);
 });

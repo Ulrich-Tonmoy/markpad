@@ -3,6 +3,7 @@ import { NoteContent, NoteInfo, ObsidianConfig } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import {
   CONFIG_FILE_NAME,
+  DEFAULT_FILE_NAME,
   FILE_EXTENSION,
   View,
   WELCOME_CONTENT,
@@ -147,10 +148,11 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom) ?? [];
   const path = get(openedFolderPathAtom);
+  const name = DEFAULT_FILE_NAME + (notes.length > 0 ? notes.length : "");
 
   const newFile = await save({
     title: "Create a new File",
-    defaultPath: path + "Untitled" + notes.length,
+    defaultPath: path + name,
     filters: [
       {
         name: "Obsidian File",

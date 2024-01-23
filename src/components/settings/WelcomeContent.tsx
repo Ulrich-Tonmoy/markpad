@@ -14,9 +14,7 @@ export const WelcomeContent = () => {
   };
 
   useEffect(() => {
-    return () => {
-      setIsEnabled(config.welcomeContent);
-    };
+    setIsEnabled(config.welcomeContent);
   }, []);
 
   return (

@@ -14,9 +14,7 @@ export const ThemeInfo = () => {
   };
 
   useEffect(() => {
-    return () => {
-      setCurrentTheme(config.theme);
-    };
+    setCurrentTheme(config.theme);
   }, []);
 
   return (

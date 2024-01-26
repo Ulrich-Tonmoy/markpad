@@ -1,6 +1,3 @@
-const inline_code = "`";
-const code_block = "```";
-
 export const welcome = `
 > If you want your new notes to be empty uncheck 'add welcome content' from settings.
 
@@ -66,6 +63,6 @@ Links are **_not supported_** yet!
 - Use > to create a block quote.
 - Select a text and press Ctrl+B to make it bold, Ctrl+I to make it italic, or Ctrl+U to underline it. Use Cmd on macOS.
 - With text selected, use Cmd+K to open the link dialog.
-- Use ${inline_code} to create inline code.
-- Type ${code_block}$lang (with $lang being any supported language, followed by space) to insert a code block.
+- Use \` to create inline code.
+- Type \`\`\`$lang (with $lang being any supported language, followed by space) to insert a code block.
 `;

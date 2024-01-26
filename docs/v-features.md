@@ -3,6 +3,7 @@
 - [x] Settings Page
 - [x] Added Theming
 - [x] By default all new notes will have starting content can be disabled in settings
+- [x] Can create `.md` `.mdx` `.obsidian` `.txt` file it doesn't matter which file extension you use just for fun.
 
 ### 0.0.1:
 

@@ -17,12 +17,11 @@ Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [
 - [x] Add Theming
 - [x] By default all new notes will have starting content can be disabled in settings
 - [ ] More MDX Editor Functionality
-- [ ] Link
-- [ ] Image
-- [ ] Table
-- [ ] Toolbar
-- [ ] Rich Text / Source Code
-- [ ] [Configure installer](https://tauri.app/v1/guides/building/windows)
+  - [ ] Link
+  - [ ] Image
+  - [ ] Table
+  - [ ] Toolbar
+  - [ ] Rich Text / Source Code
 
 [features list by version](./docs/v-features.md)
 

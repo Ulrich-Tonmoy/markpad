@@ -20,7 +20,7 @@ export const TitleBar = () => {
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 flex items-center justify-between pl-2 text-gray-300"
+      className="fixed top-0 left-0 right-0 flex items-center justify-between pl-2 text-text"
       data-tauri-drag-region
     >
       <div className="flex items-center gap-1">
@@ -31,7 +31,7 @@ export const TitleBar = () => {
           title="Codium"
         />
       </div>
-      <div data-tauri-drag-region className="text-purple-500 cursor-default">
+      <div data-tauri-drag-region className="cursor-default text-text">
         Obsidian {selectedNote && `- ${selectedNote.title}`}
       </div>
       <div className="flex items-center">
@@ -60,7 +60,7 @@ export const TitleBar = () => {
           />
         )}
         <img
-          className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:text-gray-100 hover:bg-red-500"
+          className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:text-gray-800 hover:bg-red-500"
           src="close.svg"
           alt="Close"
           title="Close"

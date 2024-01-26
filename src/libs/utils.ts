@@ -14,3 +14,7 @@ export const formatDateFromMs = (ms: number) => dateFormatter.format(ms);
 export const cn = (...args: ClassValue[]) => {
   return twMerge(clsx(...args));
 };
+
+export const setTheme = (theme: string) => {
+  document.documentElement.setAttribute("data-theme", theme);
+};

@@ -12,7 +12,17 @@ export const NotePreviewList = ({
   className,
   ...props
 }: NotePreviewListProps) => {
-  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({ onSelect });
+  const { notes, openedFolderPath, selectedNoteIndex, handleNoteSelect } = useNotesList({
+    onSelect,
+  });
+
+  if (!openedFolderPath) {
+    return (
+      <ul className={twMerge("text-center pt-4", className)} {...props}>
+        <span>Open a folder to get started.</span>
+      </ul>
+    );
+  }
 
   if (!notes?.length) {
     return (

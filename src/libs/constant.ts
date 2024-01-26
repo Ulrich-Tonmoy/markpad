@@ -2,6 +2,11 @@ import { welcome } from "./welcome";
 
 export const CONFIG_FILE_NAME = `Obsidian/obsidian.config.json`;
 export const AUTO_SAVING_TIME = 3000;
-export const FILE_EXTENSION = ".md";
-export const WELCOME_FILE_NAME = "Welcome";
-export const WELCOME_FILE_DATA = welcome;
+export const DEFAULT_FILE_NAME = "Untitled";
+export const DIALOG_FILTERS = [
+  { name: "MarkDown", extensions: ["md"] },
+  { name: "MarkDown Extended", extensions: ["mdx"] },
+  { name: "Obsidian", extensions: ["obsidian"] },
+  { name: "Text", extensions: ["txt"] },
+];
+export const WELCOME_CONTENT = welcome;

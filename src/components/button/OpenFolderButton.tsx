@@ -18,7 +18,7 @@ export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
 
   return (
     <ActionButton onClick={openFolder} {...props} title="Open Folder">
-      <LuFolderSearch className="w-4 h-4 text-zinc-300" />
+      <LuFolderSearch className="w-4 h-4 text-text" />
     </ActionButton>
   );
 };

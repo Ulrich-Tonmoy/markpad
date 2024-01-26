@@ -1,38 +1,79 @@
 import { atom } from "jotai";
-import { NoteContent, NoteInfo, Obsidian } from "@/models";
+import { NoteContent, NoteInfo, ObsidianConfig } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
-import { CONFIG_FILE_NAME, deleteFile, readDirectory, readFile, writeFile } from "@/libs";
+import {
+  CONFIG_FILE_NAME,
+  DEFAULT_FILE_NAME,
+  DIALOG_FILTERS,
+  View,
+  WELCOME_CONTENT,
+  deleteFile,
+  readDirectory,
+  readFile,
+  setTheme,
+  writeFile,
+} from "@/libs";
 import { unwrap } from "jotai/utils";
-import { ask, message, open, save } from "@tauri-apps/api/dialog";
+import { ask, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
 };
 
-const openedFolderPath = atom<string>("");
+export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
+export const viewAtom = atom<View>(View.Editor);
+export const configAtom = atom<ObsidianConfig>({
+  lastOpenedDir: "",
+  theme: "",
+  welcomeContent: true,
+});
+
+export const updateThemeAtom = atom(null, async (get, set, theme: string) => {
+  const dirPath = await dataDirPath();
+  const config = get(configAtom);
+  config.theme = theme;
+  writeFile(dirPath, JSON.stringify(config));
+  set(configAtom, config);
+});
+
+export const updateViewAtom = atom(null, async (_, set, view: View) => {
+  set(viewAtom, view);
+  if (view === View.Settings) set(selectedNoteIndexAtom, null);
+});
+
+export const updateWelcomeContentAtom = atom(null, async (get, set, show: boolean) => {
+  const dirPath = await dataDirPath();
+  const config = get(configAtom);
+  config.welcomeContent = show;
+  writeFile(dirPath, JSON.stringify(config));
+  set(configAtom, config);
+});
 
 export const loadNotesAtom = atom(null, async (_, set) => {
   const dirPath = await dataDirPath();
   readFile(dirPath).then((res: string) => {
     if (res !== "ERROR") {
-      const obsidian: Obsidian = JSON.parse(res);
+      const config: ObsidianConfig = JSON.parse(res);
+      set(configAtom, config);
+      setTheme(config.theme ?? "");
 
-      readDirectory(obsidian.lastOpenedDir).then((files) => {
+      readDirectory(config.lastOpenedDir).then((files) => {
+        set(openedFolderPathAtom, config.lastOpenedDir);
+
         if (!files.length) return;
         const sortedNotes = files.sort(
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );
-        set(openedFolderPath, obsidian.lastOpenedDir);
         set(notesAtom, sortedNotes);
       });
     }
   });
 });
 
-export const openNotesAtom = atom(null, async (_, set) => {
+export const openNotesAtom = atom(null, async (get, set) => {
   const selected = await open({
     directory: true,
   });
@@ -40,15 +81,16 @@ export const openNotesAtom = atom(null, async (_, set) => {
 
   const fullPath = selected + "\\";
   const dirPath = await dataDirPath();
+  const obsidian = get(configAtom);
 
   readDirectory(fullPath).then((files) => {
-    const data = { lastOpenedDir: fullPath };
-    writeFile(dirPath, JSON.stringify(data));
+    obsidian.lastOpenedDir = fullPath;
+    writeFile(dirPath, JSON.stringify(obsidian));
 
     const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
     );
-    set(openedFolderPath, fullPath);
+    set(openedFolderPathAtom, fullPath);
     set(notesAtom, sortedNotes);
   });
 });
@@ -105,24 +147,22 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom) ?? [];
-  const path = get(openedFolderPath);
+  const path = get(openedFolderPathAtom);
+  const name = DEFAULT_FILE_NAME + (notes.length > 0 ? notes.length : "");
 
   const newFile = await save({
     title: "Create a new File",
-    defaultPath: path + "Untitled.md",
-    filters: [
-      {
-        name: "Obsidian File",
-        extensions: ["md"],
-      },
-    ],
+    defaultPath: path + name,
+    filters: DIALOG_FILTERS,
   });
 
   if (!newFile) return;
 
   const title = (await basename(newFile)).split(".")[0];
 
-  await writeFile(newFile, "");
+  const config = get(configAtom);
+  if (config.welcomeContent) await writeFile(newFile, WELCOME_CONTENT);
+  else await writeFile(newFile, "");
 
   const newNote: NoteInfo = {
     title,
@@ -130,6 +170,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
     lastEditTime: Date.now(),
   };
 
+  set(viewAtom, View.Editor);
   set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
   set(selectedNoteIndexAtom, 0);
 });
@@ -140,10 +181,12 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
 
   if (!selectedNote || !notes?.length) return;
 
+  const fileName = await basename(selectedNote.path);
+
   const confirmed = await ask(
-    `Are you sure you want to delete ${selectedNote.title}.md?\nThis action cannot be reverted.`,
+    `Are you sure you want to delete ${fileName}?\nThis action cannot be reverted.`,
     {
-      title: `Are you sure you want to delete ${selectedNote.title}.md`,
+      title: `Are you sure you want to delete ${fileName}?`,
       type: "warning",
     },
   );
@@ -153,10 +196,10 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
   const isDeleted = deleteFile(selectedNote.path);
   if (!isDeleted) return;
 
-  await message(`${selectedNote.title}.md have been delete successfully.`, {
-    title: "Ok",
-    type: "info",
-  });
+  // await message(`${selectedNote.title}.md have been delete successfully.`, {
+  //   title: "Ok",
+  //   type: "info",
+  // });
 
   set(
     notesAtom,

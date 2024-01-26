@@ -11,19 +11,7 @@
 
 Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [NoteMark Repo](https://github.com/gionathas/NoteMark). I added few additional features and used `Tauri` instead of `Electron` as i already had some idea about tauri from [this project](https://github.com/Ulrich-Tonmoy/codium) i'm still working on.
 
-### 0.0.2 (Currently working):
-
-- [x] Settings Page
-- [x] Add Theming
-- [x] By default all new notes will have starting content can be disabled in settings
-- [ ] More MDX Editor Functionality
-  - [ ] Link
-  - [ ] Image
-  - [ ] Table
-  - [ ] Toolbar
-  - [ ] Rich Text / Source Code
-
-[features list by version](./docs/v-features.md)
+# [Features lists here](./docs/v-features.md)
 
 ### Technologies
 

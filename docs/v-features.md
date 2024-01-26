@@ -1,3 +1,9 @@
+### 0.0.2:
+
+- [x] Settings Page
+- [x] Added Theming
+- [x] By default all new notes will have starting content can be disabled in settings
+
 ### 0.0.1:
 
 - [x] Open a folder will load all `.md` files in that folder.

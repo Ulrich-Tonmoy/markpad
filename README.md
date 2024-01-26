@@ -13,6 +13,7 @@ Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [
 
 ### 0.0.2 (Currently working):
 
+- [x] Settings Page
 - [x] Add Theming
 - [x] By default all new notes will have starting content can be disabled in settings
 - [ ] More MDX Editor Functionality

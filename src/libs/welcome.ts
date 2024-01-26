@@ -11,10 +11,14 @@ Following there's a quick overview of the currently supported Markdown syntax.
 
 ## Text formatting
 
+- Select a text and press Ctrl+B to make it bold, Ctrl+I to make it italic.
+
 This is a **bold** text.
 This is an _italic_ text.
 
 ## Headings
+
+- Use one to six # characters to create a heading. The number of # characters determines the heading level.
 
 Here are all the heading formats currently supported by **_NoteMark_**:
 
@@ -27,6 +31,8 @@ Here are all the heading formats currently supported by **_NoteMark_**:
 #### Heading 4
 
 ### Bulleted list
+
+- Use * or - to create a list item.
 
 For example, you can add a list of bullet points:
 
@@ -44,25 +50,21 @@ Here we have a numbered list:
 
 ### Blockquote
 
+- Use > to create a block quote.
+
 > This is a blockquote. You can use it to emphasize some text or to cite someone.
 
 ### Code blocks
 
+- Use \` to create inline code.
+
 Only \`inline code\` is currently supported!
+
+- Type \`\`\`$lang (with $lang being any supported language, followed by space) to insert a code block.
 
 Code block snippets using the following syntax _\`\`\`js\`\`\`_ are **_not supported_** yet!
 
 ### Links
 
 Links are **_not supported_** yet!
-
-# Supported shortcuts
-
-- Use one to six # characters to create a heading. The number of # characters determines the heading level.
-- Use * or - to create a list item.
-- Use > to create a block quote.
-- Select a text and press Ctrl+B to make it bold, Ctrl+I to make it italic, or Ctrl+U to underline it. Use Cmd on macOS.
-- With text selected, use Cmd+K to open the link dialog.
-- Use \` to create inline code.
-- Type \`\`\`$lang (with $lang being any supported language, followed by space) to insert a code block.
 `;

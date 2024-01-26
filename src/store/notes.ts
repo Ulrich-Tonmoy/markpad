@@ -4,7 +4,7 @@ import { dataDir } from "@tauri-apps/api/path";
 import {
   CONFIG_FILE_NAME,
   DEFAULT_FILE_NAME,
-  FILE_EXTENSION,
+  DIALOG_FILTERS,
   View,
   WELCOME_CONTENT,
   deleteFile,
@@ -153,12 +153,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const newFile = await save({
     title: "Create a new File",
     defaultPath: path + name,
-    filters: [
-      {
-        name: "Obsidian File",
-        extensions: [FILE_EXTENSION],
-      },
-    ],
+    filters: DIALOG_FILTERS,
   });
 
   if (!newFile) return;
@@ -186,10 +181,12 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
 
   if (!selectedNote || !notes?.length) return;
 
+  const fileName = await basename(selectedNote.path);
+
   const confirmed = await ask(
-    `Are you sure you want to delete ${selectedNote.title}.md?\nThis action cannot be reverted.`,
+    `Are you sure you want to delete ${fileName}?\nThis action cannot be reverted.`,
     {
-      title: `Are you sure you want to delete ${selectedNote.title}.md`,
+      title: `Are you sure you want to delete ${fileName}?`,
       type: "warning",
     },
   );

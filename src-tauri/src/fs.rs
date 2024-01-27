@@ -26,11 +26,7 @@ pub fn read_folder(dir_path: &str) -> String {
             Err(_error) => String::from("ERROR"),
         };
 
-        if !filename.ends_with(".md")
-            && !filename.ends_with(".mdx")
-            && !filename.ends_with(".txt")
-            && !filename.ends_with(".obsidian")
-        {
+        if !filename.ends_with(".md") && !filename.ends_with(".txt") {
             continue;
         }
 

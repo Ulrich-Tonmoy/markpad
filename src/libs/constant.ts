@@ -5,8 +5,6 @@ export const AUTO_SAVING_TIME = 3000;
 export const DEFAULT_FILE_NAME = "Untitled";
 export const DIALOG_FILTERS = [
   { name: "MarkDown", extensions: ["md"] },
-  { name: "MarkDown Extended", extensions: ["mdx"] },
-  { name: "Obsidian", extensions: ["obsidian"] },
   { name: "Text", extensions: ["txt"] },
 ];
 export const WELCOME_CONTENT = welcome;

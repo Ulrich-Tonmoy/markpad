@@ -1,8 +1,11 @@
 <div  align="center">
     <img src="./docs/logo.png" alt="Obsidian Logo" title="Obsidian" width="200"/>
     <h1>Obsidian</h1>
-    <h3>A Simple MarkDown Editor built with Tauri. []()</h3>
+    <h3>A Simple MarkDown Editor built with Tauri.</h3>
 </div>
+
+> [!NOTE]  
+> [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/obsidian/releases)
 
 <div  align="center">
     <img src="./docs/obsidian.png" alt="Obsidian"/>
@@ -10,8 +13,6 @@
 </div>
 
 Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [NoteMark Repo](https://github.com/gionathas/NoteMark). I added few additional features and used `Tauri` instead of `Electron`.
-
-## [Download For Windows](https://github.com/Ulrich-Tonmoy/obsidian/releases)
 
 ## [Features lists here](./docs/v-features.md)
 
@@ -24,20 +25,21 @@ Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [
 - [x] Jotai
 - [x] MDX Editor
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
-
 ## How to run (Windows)
 
 > [!TIP]
 > Recommended IDE Setup
+>
 > - [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 
 > [!IMPORTANT]  
 > Tools Needed
+>
 > - [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
 
 > [!NOTE]  
 > Commands
+>
 > - Open the folder in `vs code` or `terminal`.
 > - Run the `npm i` to install the packages.
 > - Then run the `npm run tauri dev` to run the project.

@@ -4,8 +4,7 @@
     <h3>A Simple MarkDown Editor built with Tauri.</h3>
 </div>
 
-> [!NOTE]  
-> [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/obsidian/releases)
+> [!NOTE] [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/obsidian/releases)
 
 <div  align="center">
     <img src="./docs/obsidian.png" alt="Obsidian"/>

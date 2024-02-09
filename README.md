@@ -30,17 +30,14 @@ This template should help get you started developing with Tauri, React and Types
 
 > [!TIP]
 > Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+> - [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 
 > [!IMPORTANT]  
 > Tools Needed
-
-- [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
+> - [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
 
 > [!NOTE]  
 > Commands
-
-- Open the folder in `vs code` or `terminal`.
-- Run the `npm i` to install the packages.
-- Then run the `npm run tauri dev` to run the project.
+> - Open the folder in `vs code` or `terminal`.
+> - Run the `npm i` to install the packages.
+> - Then run the `npm run tauri dev` to run the project.

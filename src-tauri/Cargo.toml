@@ -1,10 +1,10 @@
 [package]
 name = "obsidian"
 version = "0.0.2"
-description = "A Tauri App"
-authors = ["you"]
+description = "A rich text editor."
+authors = ["Ulrich-Tonmoy"]
 license = ""
-repository = ""
+repository = "https://github.com/Ulrich-Tonmoy/obsidian"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

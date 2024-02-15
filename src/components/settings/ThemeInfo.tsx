@@ -23,8 +23,8 @@ export const ThemeInfo = () => {
       <div className="flex mt-2 space-x-4">
         <button
           onClick={() => setTheme("")}
-          className="w-10 h-10 bg-transparent border-2 border-white rounded-full"
-          title="Transparent"
+          className="w-10 h-10 border-2 border-white rounded-full bg-black/50"
+          title="Dark Transparent"
           disabled={currentTheme === ""}
         />
         <button
@@ -32,6 +32,18 @@ export const ThemeInfo = () => {
           className="w-10 h-10 bg-black border-2 border-white rounded-full"
           title="Dark"
           disabled={currentTheme === "dark"}
+        />
+        <button
+          onClick={() => setTheme("light-tp")}
+          className="w-10 h-10 border-2 border-white rounded-full bg-white/50"
+          title="Light Transparent"
+          disabled={currentTheme === "light-tp"}
+        />
+        <button
+          onClick={() => setTheme("light")}
+          className="w-10 h-10 bg-white border-2 border-white rounded-full"
+          title="Light"
+          disabled={currentTheme === "light"}
         />
         <button
           onClick={() => setTheme("red")}

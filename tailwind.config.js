@@ -6,7 +6,6 @@ export default {
       colors: {
         thumb: "var(--thumb)",
         primary: "var(--primary)",
-        secondary: "var(--secondary)",
         active: "var(--active)",
         hover: "var(--hover)",
         border: "var(--border)",

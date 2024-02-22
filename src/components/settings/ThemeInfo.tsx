@@ -1,24 +1,19 @@
 import { THEMES } from "@/libs";
-import { configAtom, updateConfigAtom } from "@/store";
-import { useAtomValue, useSetAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { configAtom, updateConfigDataAtom } from "@/store";
+import { useAtom, useSetAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
+import { setTheme } from "../../libs/utils";
 
 export const ThemeInfo = () => {
-  const config = useAtomValue(configAtom);
-  const updateConfig = useSetAtom(updateConfigAtom);
-  const [currentTheme, setCurrentTheme] = useState<string>("");
+  const [config, setConfig] = useAtom(configAtom);
+  const updateConfigData = useSetAtom(updateConfigDataAtom);
 
-  const setTheme = (theme: string) => {
-    document.documentElement.setAttribute("data-theme", theme);
-    config.theme = theme;
-    updateConfig(config);
-    setCurrentTheme(theme);
+  const toggleTheme = (theme: string) => {
+    setTheme(theme);
+    setConfig((prevConfig) => ({ ...prevConfig, theme: theme }));
+    const updatedConfig = { ...config, theme: theme };
+    updateConfigData(updatedConfig);
   };
-
-  useEffect(() => {
-    setCurrentTheme(config.theme);
-  }, []);
 
   return (
     <>
@@ -27,13 +22,13 @@ export const ThemeInfo = () => {
         {THEMES.map((theme, i) => (
           <button
             key={i}
-            onClick={() => setTheme(theme.key)}
+            onClick={() => toggleTheme(theme.key)}
             className={twMerge(
               "w-10 h-10 border-2 border-white rounded-full",
               theme.color,
             )}
             title={theme.name}
-            disabled={currentTheme === theme.key}
+            disabled={config.theme === theme.key}
           />
         ))}
       </div>

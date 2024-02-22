@@ -2,7 +2,7 @@ import { useRef } from "react";
 import {
   ActionButtonsLayout,
   Content,
-  Editor,
+  MDXEditor,
   NotePreviewList,
   RootLayout,
   Settings,
@@ -33,7 +33,7 @@ function App() {
           />
         </Sidebar>
         <Content className="border-l bg-zinc-900/50 border-border">
-          {view === View.Editor && <Editor />}
+          {view === View.Editor && <MDXEditor />}
           {view === View.Settings && <Settings />}
         </Content>
       </RootLayout>

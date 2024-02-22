@@ -1,3 +1,19 @@
+### 0.0.5:
+
+- [ ] Add word and char count
+
+### 0.0.4:
+
+- [x] Updated Theme
+- [x] Added Sidebar Toggle
+- [x] Default Filename fixed
+- [x] Configurable Select First File on App Open
+- [x] Add MDX Toolbar
+
+### 0.0.3:
+
+- [x] Theme Updated
+
 ### 0.0.2:
 
 - [x] Settings Page

@@ -1,10 +1,10 @@
-import { ThemeInfo, WelcomeContent } from "@/components";
+import { ThemeInfo, ConfigToggles } from "@/components";
 
 export const Settings = () => {
   return (
     <div className="p-4">
       <ThemeInfo />
-      <WelcomeContent />
+      <ConfigToggles />
     </div>
   );
 };

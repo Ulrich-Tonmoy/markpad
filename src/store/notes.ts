@@ -30,6 +30,7 @@ export const configAtom = atom<ObsidianConfig>({
   theme: "",
   welcomeContent: true,
   showSidebar: true,
+  openFirstFile: false,
 });
 
 export const updateConfigDataAtom = atom(
@@ -55,6 +56,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
         theme: config.theme ?? "",
         welcomeContent: config.welcomeContent ?? true,
         showSidebar: config.showSidebar ?? true,
+        openFirstFile: config.openFirstFile ?? false,
       };
       set(configAtom, config);
       setTheme(config.theme ?? "");
@@ -69,6 +71,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );
         set(notesAtom, sortedNotes);
+        if (config.openFirstFile) set(selectedNoteIndexAtom, 0);
       });
     }
   });

@@ -3,4 +3,5 @@ export type ObsidianConfig = {
   theme: string;
   welcomeContent: boolean;
   showSidebar: boolean;
+  openFirstFile: boolean;
 };

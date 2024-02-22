@@ -1,5 +1,5 @@
 import {
-  MDXEditor,
+  MDXEditor as Editor,
   headingsPlugin,
   imagePlugin,
   linkPlugin,
@@ -10,13 +10,13 @@ import {
 } from "@mdxeditor/editor";
 import { useEditor } from "@/hooks";
 
-export const Editor = () => {
+export const MDXEditor = () => {
   const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useEditor();
 
   if (!selectedNote) return null;
 
   return (
-    <MDXEditor
+    <Editor
       ref={editorRef}
       key={selectedNote.title}
       markdown={selectedNote.content}

@@ -2,19 +2,14 @@ import { useRef } from "react";
 import {
   ActionButtonsLayout,
   Content,
-  MDXEditor,
+  EditorBody,
   NotePreviewList,
   RootLayout,
-  Settings,
   Sidebar,
   TitleBar,
 } from "@/components";
-import { useAtomValue } from "jotai";
-import { viewAtom } from "@/store";
-import { View } from "./libs";
 
 function App() {
-  const view = useAtomValue(viewAtom);
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const resetScroll = () => {
@@ -33,8 +28,7 @@ function App() {
           />
         </Sidebar>
         <Content className="border-l bg-editor border-border">
-          {view === View.Editor && <MDXEditor />}
-          {view === View.Settings && <Settings />}
+          <EditorBody />
         </Content>
       </RootLayout>
     </div>

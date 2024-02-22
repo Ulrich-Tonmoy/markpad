@@ -15,8 +15,6 @@ export const useEditor = () => {
     async (content: NoteContent) => {
       if (!selectedNote) return;
 
-      console.info("Auto saving:", selectedNote.title);
-
       await saveNote(content);
     },
     AUTO_SAVING_TIME,

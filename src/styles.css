@@ -106,6 +106,10 @@
     @apply rounded-md bg-[var(--thumb)];
   }
 
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[var(--active)];
+  }
+
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }

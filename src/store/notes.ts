@@ -175,7 +175,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
 
   const config = get(configAtom);
   if (config.welcomeContent) await writeFile(newFile, WELCOME_CONTENT);
-  else await writeFile(newFile, "");
+  else await writeFile(newFile, `# ${name}`);
 
   const newNote: NoteInfo = {
     title,

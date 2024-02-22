@@ -10,11 +10,11 @@ import {
   TitleBar,
 } from "@/components";
 import { useAtomValue } from "jotai";
-import { sidebarShowAtom, viewAtom } from "@/store";
+import { configAtom, viewAtom } from "@/store";
 import { View } from "./libs";
 
 function App() {
-  const sidebarShow = useAtomValue(sidebarShowAtom);
+  const config = useAtomValue(configAtom);
   const view = useAtomValue(viewAtom);
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +26,7 @@ function App() {
     <div>
       <TitleBar />
       <RootLayout>
-        {sidebarShow && (
+        {config.showSidebar && (
           <Sidebar className="p-2 pr-1">
             <ActionButtonsLayout className="flex justify-between" />
             <NotePreviewList

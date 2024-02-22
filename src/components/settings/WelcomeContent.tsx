@@ -1,16 +1,17 @@
-import { configAtom, updateWelcomeContentAtom } from "@/store";
+import { configAtom, updateConfigAtom } from "@/store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export const WelcomeContent = () => {
   const config = useAtomValue(configAtom);
   const [isEnabled, setIsEnabled] = useState(false);
-  const updateWelcomeContent = useSetAtom(updateWelcomeContentAtom);
+  const updateConfig = useSetAtom(updateConfigAtom);
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
     setIsEnabled(isChecked);
-    updateWelcomeContent(isChecked);
+    config.welcomeContent = isChecked;
+    updateConfig(config);
   };
 
   useEffect(() => {

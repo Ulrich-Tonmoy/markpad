@@ -1,17 +1,18 @@
 import { THEMES } from "@/libs";
-import { configAtom, updateThemeAtom } from "@/store";
+import { configAtom, updateConfigAtom } from "@/store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 export const ThemeInfo = () => {
   const config = useAtomValue(configAtom);
-  const updateTheme = useSetAtom(updateThemeAtom);
+  const updateConfig = useSetAtom(updateConfigAtom);
   const [currentTheme, setCurrentTheme] = useState<string>("");
 
   const setTheme = (theme: string) => {
     document.documentElement.setAttribute("data-theme", theme);
-    updateTheme(theme);
+    config.theme = theme;
+    updateConfig(config);
     setCurrentTheme(theme);
   };
 

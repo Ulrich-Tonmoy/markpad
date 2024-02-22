@@ -25,17 +25,15 @@ export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
 export const viewAtom = atom<View>(View.Editor);
-export const sidebarShowAtom = atom<boolean>(true);
 export const configAtom = atom<ObsidianConfig>({
   lastOpenedDir: "",
   theme: "",
   welcomeContent: true,
+  showSidebar: true,
 });
 
-export const updateThemeAtom = atom(null, async (get, set, theme: string) => {
+export const updateConfigAtom = atom(null, async (_, set, config: ObsidianConfig) => {
   const dirPath = await dataDirPath();
-  const config = get(configAtom);
-  config.theme = theme;
   writeFile(dirPath, JSON.stringify(config));
   set(configAtom, config);
 });
@@ -43,18 +41,6 @@ export const updateThemeAtom = atom(null, async (get, set, theme: string) => {
 export const updateViewAtom = atom(null, async (_, set, view: View) => {
   set(viewAtom, view);
   if (view === View.Settings) set(selectedNoteIndexAtom, null);
-});
-
-export const updateSidebarShowAtom = atom(null, async (_, set, show: boolean) => {
-  set(sidebarShowAtom, show);
-});
-
-export const updateWelcomeContentAtom = atom(null, async (get, set, show: boolean) => {
-  const dirPath = await dataDirPath();
-  const config = get(configAtom);
-  config.welcomeContent = show;
-  writeFile(dirPath, JSON.stringify(config));
-  set(configAtom, config);
 });
 
 export const loadNotesAtom = atom(null, async (_, set) => {

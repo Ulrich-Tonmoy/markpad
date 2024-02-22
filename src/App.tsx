@@ -32,7 +32,7 @@ function App() {
             onSelect={resetScroll}
           />
         </Sidebar>
-        <Content className="border-l bg-zinc-900/50 border-border">
+        <Content className="border-l bg-editor border-border">
           {view === View.Editor && <MDXEditor />}
           {view === View.Settings && <Settings />}
         </Content>

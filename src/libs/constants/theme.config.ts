@@ -10,21 +10,6 @@ export const THEMES = [
     color: "bg-black",
   },
   {
-    key: "light-tp",
-    name: "Light Transparent",
-    color: "bg-white/50",
-  },
-  {
-    key: "",
-    name: "Dark Transparent",
-    color: "bg-black/50",
-  },
-  {
-    key: "light",
-    name: "Light",
-    color: "bg-white",
-  },
-  {
     key: "red",
     name: "Red",
     color: "bg-red-500",

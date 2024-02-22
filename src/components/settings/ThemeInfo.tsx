@@ -21,7 +21,7 @@ export const ThemeInfo = () => {
 
   return (
     <>
-      <h2>Manage Themes</h2>
+      <h2 className="text-lg text-text">Manage Themes</h2>
       <div className="flex mt-2 space-x-4">
         {THEMES.map((theme, i) => (
           <button

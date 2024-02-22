@@ -4,93 +4,80 @@
 
 @layer base {
   :root {
-    --thumb: rgba(85, 85, 85, 0.5);
     --primary: rgba(0, 0, 0, 0.5);
+    --text: rgba(212, 212, 216, 1);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(161, 161, 170, 0.75);
     --hover: rgba(82, 82, 91, 0.5);
     --border: rgba(161, 161, 170, 0.5);
-    --text: rgba(212, 212, 216, 1);
     --cursor: rgba(255, 255, 255, 1);
+    --thumb: rgba(85, 85, 85, 0.5);
   }
 
   :root[data-theme="dark"] {
-    --thumb: rgba(85, 85, 85, 1);
     --primary: rgba(0, 0, 0, 1);
+    --text: rgba(212, 212, 216, 1);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(161, 161, 170, 1);
     --hover: rgba(82, 82, 91, 1);
     --border: rgba(161, 161, 170, 1);
-    --text: rgba(212, 212, 216, 1);
     --cursor: rgba(255, 255, 255, 1);
-  }
-
-  :root[data-theme="light-tp"] {
-    --thumb: rgba(170, 170, 170, 0.5);
-    --primary: rgba(255, 255, 255, 0.5);
-    --active: rgba(94, 94, 85, 0.75);
-    --hover: rgba(82, 82, 91, 0.5);
-    --border: rgba(161, 161, 170, 0.5);
-    --text: rgba(43, 43, 39, 1);
-    --cursor: rgba(0, 0, 0, 1);
-  }
-
-  :root[data-theme="light"] {
-    --thumb: rgba(170, 170, 170, 1);
-    --primary: rgba(255, 255, 255, 1);
-    --active: rgba(94, 94, 85, 1);
-    --hover: rgba(82, 82, 91, 1);
-    --border: rgba(161, 161, 170, 1);
-    --text: rgba(43, 43, 39, 1);
-    --cursor: rgba(0, 0, 0, 1);
+    --thumb: rgba(85, 85, 85, 1);
   }
 
   :root[data-theme="purple"] {
-    --thumb: rgba(146, 51, 234, 0.5);
     --primary: rgba(18, 2, 34, 0.5);
+    --text: rgb(255, 255, 255);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(192, 132, 252, 0.5);
     --hover: rgba(147, 51, 234, 0.5);
-    --border: rgba(192, 132, 252, 0.5);
-    --text: rgba(168, 85, 247, 1);
+    --border: rgba(161, 161, 170, 0.5);
     --cursor: rgba(168, 85, 247, 1);
+    --thumb: rgba(146, 51, 234, 0.5);
   }
 
   :root[data-theme="green"] {
-    --thumb: rgba(51, 234, 146, 0.5);
-    --primary: rgba(2, 34, 18, 0.5);
+    --primary: rgba(4, 71, 37, 0.5);
+    --text: rgb(255, 255, 255);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(132, 252, 192, 0.5);
     --hover: rgba(51, 234, 147, 0.5);
-    --border: rgba(132, 252, 192, 0.5);
-    --text: rgba(85, 247, 168, 1);
+    --border: rgba(161, 161, 170, 0.5);
     --cursor: rgba(85, 247, 168, 1);
+    --thumb: rgba(51, 234, 146, 0.5);
   }
 
   :root[data-theme="red"] {
-    --thumb: rgba(234, 51, 51, 0.5);
-    --primary: rgba(34, 2, 18, 0.5);
+    --primary: rgba(34, 2, 8, 0.5);
+    --text: rgb(255, 255, 255);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(252, 132, 132, 0.5);
     --hover: rgba(234, 51, 52, 0.5);
-    --border: rgba(252, 132, 132, 0.5);
-    --text: rgba(247, 85, 85, 1);
+    --border: rgba(161, 161, 170, 0.5);
     --cursor: rgba(247, 85, 85, 1);
+    --thumb: rgba(234, 51, 51, 0.5);
   }
 
   :root[data-theme="yellow"] {
-    --thumb: rgba(234, 234, 51, 0.5);
-    --primary: rgba(18, 18, 2, 0.5);
+    --primary: rgba(58, 58, 4, 0.5);
+    --text: rgb(255, 255, 255);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(252, 252, 132, 0.5);
     --hover: rgba(234, 234, 51, 0.5);
-    --border: rgba(252, 252, 132, 0.5);
-    --text: rgba(247, 247, 85, 1);
+    --border: rgba(161, 161, 170, 0.5);
     --cursor: rgba(247, 247, 85, 1);
+    --thumb: rgba(234, 234, 51, 0.5);
   }
 
   :root[data-theme="blue"] {
-    --thumb: rgba(38, 125, 242, 0.5);
     --primary: rgba(10, 55, 92, 0.5);
+    --text: rgb(255, 255, 255);
+    --editor: rgba(24, 24, 27, 0.5);
     --active: rgba(44, 135, 255, 0.5);
     --hover: rgba(38, 125, 242, 0.5);
-    --border: rgba(92, 179, 255, 0.5);
-    --text: rgba(85, 168, 247, 1);
+    --border: rgba(161, 161, 170, 0.5);
     --cursor: rgba(92, 179, 255, 1);
+    --thumb: rgba(38, 125, 242, 0.5);
   }
 
   #root {

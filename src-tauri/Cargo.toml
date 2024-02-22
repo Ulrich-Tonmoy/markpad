@@ -1,7 +1,7 @@
 [package]
 name = "obsidian"
-version = "0.0.3"
-description = "A rich text editor."
+version = "0.0.4"
+description = "Obsidian"
 authors = ["Ulrich-Tonmoy"]
 license = ""
 repository = "https://github.com/Ulrich-Tonmoy/obsidian"

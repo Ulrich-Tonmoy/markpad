@@ -139,7 +139,14 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom) ?? [];
   const path = get(openedFolderPathAtom);
-  const name = DEFAULT_FILE_NAME + (notes.length > 0 ? notes.length : "");
+
+  let counter = 0;
+  let name = DEFAULT_FILE_NAME;
+
+  while (notes.some((note) => note.title.startsWith(name))) {
+    counter++;
+    name = DEFAULT_FILE_NAME + (counter > 0 ? counter : "");
+  }
 
   const newFile = await save({
     title: "Create a new File",

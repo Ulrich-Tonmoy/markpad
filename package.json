@@ -12,7 +12,6 @@
   "dependencies": {
     "@mdxeditor/editor": "^2.9.0",
     "@tauri-apps/api": "^1.5.3",
-    "@uiw/react-markdown-editor": "^6.0.0",
     "jotai": "^2.6.5",
     "lodash": "^4.17.21",
     "react": "^18.2.0",

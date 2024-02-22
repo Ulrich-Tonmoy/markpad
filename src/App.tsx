@@ -10,10 +10,11 @@ import {
   TitleBar,
 } from "@/components";
 import { useAtomValue } from "jotai";
-import { viewAtom } from "@/store";
+import { sidebarShowAtom, viewAtom } from "@/store";
 import { View } from "./libs";
 
 function App() {
+  const sidebarShow = useAtomValue(sidebarShowAtom);
   const view = useAtomValue(viewAtom);
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -25,13 +26,15 @@ function App() {
     <div>
       <TitleBar />
       <RootLayout>
-        <Sidebar className="p-2 pr-1">
-          <ActionButtonsLayout className="flex justify-between" />
-          <NotePreviewList
-            className="h-[95%] px-2 mt-1 space-y-2 overflow-auto"
-            onSelect={resetScroll}
-          />
-        </Sidebar>
+        {sidebarShow && (
+          <Sidebar className="p-2 pr-1">
+            <ActionButtonsLayout className="flex justify-between" />
+            <NotePreviewList
+              className="h-[95%] px-2 mt-1 space-y-2 overflow-auto"
+              onSelect={resetScroll}
+            />
+          </Sidebar>
+        )}
         <Content className="border-l bg-editor border-border">
           {view === View.Editor && <MDXEditor />}
           {view === View.Settings && <Settings />}

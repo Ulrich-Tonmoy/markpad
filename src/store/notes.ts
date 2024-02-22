@@ -75,6 +75,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
 });
 
 export const openNotesAtom = atom(null, async (get, set) => {
+  set(selectedNoteIndexAtom, null);
   const selected = await open({
     directory: true,
   });

@@ -7,13 +7,9 @@ export const EditorBody = () => {
   const view = useAtomValue(viewAtom);
 
   return (
-    <div>
-      {view === View.Editor && (
-        <>
-          <MDXEditor updateCounts={updateCounts} />
-        </>
-      )}
+    <>
+      {view === View.Editor && <MDXEditor />}
       {view === View.Settings && <Settings />}
-    </div>
+    </>
   );
 };

@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <TitleBar />
       <RootLayout>
         <Sidebar className="p-2 pr-1">
@@ -31,7 +31,7 @@ function App() {
           <EditorBody />
         </Content>
       </RootLayout>
-    </div>
+    </>
   );
 }
 

@@ -1,6 +1,8 @@
+import { THEMES } from "@/libs";
 import { configAtom, updateThemeAtom } from "@/store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 export const ThemeInfo = () => {
   const config = useAtomValue(configAtom);
@@ -21,60 +23,18 @@ export const ThemeInfo = () => {
     <>
       <h2>Manage Themes</h2>
       <div className="flex mt-2 space-x-4">
-        <button
-          onClick={() => setTheme("")}
-          className="w-10 h-10 border-2 border-white rounded-full bg-black/50"
-          title="Dark Transparent"
-          disabled={currentTheme === ""}
-        />
-        <button
-          onClick={() => setTheme("dark")}
-          className="w-10 h-10 bg-black border-2 border-white rounded-full"
-          title="Dark"
-          disabled={currentTheme === "dark"}
-        />
-        <button
-          onClick={() => setTheme("light-tp")}
-          className="w-10 h-10 border-2 border-white rounded-full bg-white/50"
-          title="Light Transparent"
-          disabled={currentTheme === "light-tp"}
-        />
-        <button
-          onClick={() => setTheme("light")}
-          className="w-10 h-10 bg-white border-2 border-white rounded-full"
-          title="Light"
-          disabled={currentTheme === "light"}
-        />
-        <button
-          onClick={() => setTheme("red")}
-          className="w-10 h-10 bg-red-500 border-2 border-white rounded-full"
-          title="Red"
-          disabled={currentTheme === "red"}
-        />
-        <button
-          onClick={() => setTheme("yellow")}
-          className="w-10 h-10 bg-yellow-500 border-2 border-white rounded-full"
-          title="Yellow"
-          disabled={currentTheme === "yellow"}
-        />
-        <button
-          onClick={() => setTheme("green")}
-          className="w-10 h-10 bg-green-500 border-2 border-white rounded-full"
-          title="Green"
-          disabled={currentTheme === "green"}
-        />
-        <button
-          onClick={() => setTheme("blue")}
-          className="w-10 h-10 bg-blue-500 border-2 border-white rounded-full"
-          title="Blue"
-          disabled={currentTheme === "blue"}
-        />
-        <button
-          onClick={() => setTheme("purple")}
-          className="w-10 h-10 bg-purple-500 border-2 border-white rounded-full"
-          title="purple"
-          disabled={currentTheme === "purple"}
-        />
+        {THEMES.map((theme, i) => (
+          <button
+            key={i}
+            onClick={() => setTheme(theme.key)}
+            className={twMerge(
+              "w-10 h-10 border-2 border-white rounded-full",
+              theme.color,
+            )}
+            title={theme.name}
+            disabled={currentTheme === theme.key}
+          />
+        ))}
       </div>
     </>
   );

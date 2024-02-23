@@ -1,6 +1,7 @@
 ### 0.0.5:
 
 - [ ] Add word and char count
+- [ ] Add MDX Toolbar
 
 ### 0.0.4:
 
@@ -8,7 +9,6 @@
 - [x] Added Sidebar Toggle
 - [x] Default Filename fixed
 - [x] Configurable Select First File on App Open
-- [x] Add MDX Toolbar
 
 ### 0.0.3:
 

@@ -4,13 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        thumb: "var(--thumb)",
         primary: "var(--primary)",
+        text: "var(--text)",
+        editor: "var(--editor)",
         active: "var(--active)",
         hover: "var(--hover)",
         border: "var(--border)",
-        text: "var(--text)",
         cursor: "var(--cursor)",
+        thumb: "var(--thumb)",
       },
     },
   },

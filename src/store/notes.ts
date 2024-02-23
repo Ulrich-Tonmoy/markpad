@@ -29,36 +29,39 @@ export const configAtom = atom<ObsidianConfig>({
   lastOpenedDir: "",
   theme: "",
   welcomeContent: true,
+  showSidebar: true,
+  openFirstFile: false,
 });
 
-export const updateThemeAtom = atom(null, async (get, set, theme: string) => {
-  const dirPath = await dataDirPath();
-  const config = get(configAtom);
-  config.theme = theme;
-  writeFile(dirPath, JSON.stringify(config));
-  set(configAtom, config);
-});
+export const updateConfigDataAtom = atom(
+  null,
+  async (_get, _set, config: ObsidianConfig) => {
+    const dirPath = await dataDirPath();
+    await writeFile(dirPath, JSON.stringify(config));
+  },
+);
 
 export const updateViewAtom = atom(null, async (_, set, view: View) => {
   set(viewAtom, view);
   if (view === View.Settings) set(selectedNoteIndexAtom, null);
 });
 
-export const updateWelcomeContentAtom = atom(null, async (get, set, show: boolean) => {
-  const dirPath = await dataDirPath();
-  const config = get(configAtom);
-  config.welcomeContent = show;
-  writeFile(dirPath, JSON.stringify(config));
-  set(configAtom, config);
-});
-
 export const loadNotesAtom = atom(null, async (_, set) => {
   const dirPath = await dataDirPath();
   readFile(dirPath).then((res: string) => {
     if (res !== "ERROR") {
-      const config: ObsidianConfig = JSON.parse(res);
+      let config: ObsidianConfig = JSON.parse(res);
+      config = {
+        lastOpenedDir: config.lastOpenedDir ?? null,
+        theme: config.theme ?? "",
+        welcomeContent: config.welcomeContent ?? true,
+        showSidebar: config.showSidebar ?? true,
+        openFirstFile: config.openFirstFile ?? false,
+      };
       set(configAtom, config);
       setTheme(config.theme ?? "");
+
+      if (!config.lastOpenedDir) return;
 
       readDirectory(config.lastOpenedDir).then((files) => {
         set(openedFolderPathAtom, config.lastOpenedDir);
@@ -68,12 +71,14 @@ export const loadNotesAtom = atom(null, async (_, set) => {
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );
         set(notesAtom, sortedNotes);
+        if (config.openFirstFile) set(selectedNoteIndexAtom, 0);
       });
     }
   });
 });
 
 export const openNotesAtom = atom(null, async (get, set) => {
+  set(selectedNoteIndexAtom, null);
   const selected = await open({
     directory: true,
   });
@@ -85,6 +90,7 @@ export const openNotesAtom = atom(null, async (get, set) => {
 
   readDirectory(fullPath).then((files) => {
     obsidian.lastOpenedDir = fullPath;
+    set(configAtom, obsidian);
     writeFile(dirPath, JSON.stringify(obsidian));
 
     const sortedNotes = files.sort(
@@ -148,7 +154,14 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom) ?? [];
   const path = get(openedFolderPathAtom);
-  const name = DEFAULT_FILE_NAME + (notes.length > 0 ? notes.length : "");
+
+  let counter = 0;
+  let name = DEFAULT_FILE_NAME;
+
+  while (notes.some((note) => note.title.startsWith(name))) {
+    counter++;
+    name = DEFAULT_FILE_NAME + (counter > 0 ? counter : "");
+  }
 
   const newFile = await save({
     title: "Create a new File",
@@ -162,7 +175,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
 
   const config = get(configAtom);
   if (config.welcomeContent) await writeFile(newFile, WELCOME_CONTENT);
-  else await writeFile(newFile, "");
+  else await writeFile(newFile, `# ${name}`);
 
   const newNote: NoteInfo = {
     title,

@@ -2,19 +2,14 @@ import { useRef } from "react";
 import {
   ActionButtonsLayout,
   Content,
-  Editor,
+  EditorBody,
   NotePreviewList,
   RootLayout,
-  Settings,
   Sidebar,
   TitleBar,
 } from "@/components";
-import { useAtomValue } from "jotai";
-import { viewAtom } from "@/store";
-import { View } from "./libs";
 
 function App() {
-  const view = useAtomValue(viewAtom);
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const resetScroll = () => {
@@ -22,7 +17,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <TitleBar />
       <RootLayout>
         <Sidebar className="p-2 pr-1">
@@ -32,12 +27,11 @@ function App() {
             onSelect={resetScroll}
           />
         </Sidebar>
-        <Content className="border-l bg-zinc-900/50 border-border">
-          {view === View.Editor && <Editor />}
-          {view === View.Settings && <Settings />}
+        <Content className="border-l bg-editor border-border">
+          <EditorBody />
         </Content>
       </RootLayout>
-    </div>
+    </>
   );
 }
 

@@ -28,3 +28,33 @@
     }
   }
 }
+
+._admonitionDanger_1boox_151 {
+  color: black;
+  --admonitionBorder: darkred;
+  --admonitionBg: crimson;
+}
+
+._admonitionInfo_1boox_152 {
+  color: black;
+  --admonitionBorder: darkgreen;
+  --admonitionBg: lime;
+}
+
+._admonitionNote_1boox_153 {
+  color: black;
+  --admonitionBorder: dimgray;
+  --admonitionBg: darkslategray;
+}
+
+._admonitionTip_1boox_154 {
+  color: black;
+  --admonitionBorder: blue;
+  --admonitionBg: deepskyblue;
+}
+
+._admonitionCaution_1boox_155 {
+  color: black;
+  --admonitionBorder: darkkhaki;
+  --admonitionBg: yellow;
+}

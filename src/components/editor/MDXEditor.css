@@ -1,0 +1,30 @@
+@import "../../../node_modules/@mdxeditor/editor/dist/style.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .prose {
+    & [data-lexical-decorator] > table {
+      table-layout: fixed;
+
+      & [data-tool-cell] {
+        padding: 1px;
+        line-height: 1rem;
+      }
+    }
+
+    & li[role="checkbox"] {
+      text-indent: 1.2rem;
+    }
+
+    & li[role="checkbox"]::before {
+      transform: translate(6px, 6px);
+    }
+
+    & li[role="checkbox"]::after {
+      transform: translate(6px, 6px) rotate(45deg);
+    }
+  }
+}

@@ -25,59 +25,72 @@ import {
 } from "@mdxeditor/editor";
 import { useEditor } from "@/hooks";
 import "./MDXEditor.css";
+import { useAtomValue } from "jotai";
+import { configAtom } from "@/store";
 
 export const MDXEditor = () => {
   const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useEditor();
 
+  const config = useAtomValue(configAtom);
+
   if (!selectedNote) return null;
 
-  const allPlugins = (diffMarkdown: string) => [
-    toolbarPlugin({
-      toolbarContents: () => (
-        <DiffSourceToggleWrapper>
-          <BoldItalicUnderlineToggles />
-          <CodeToggle />
-          <InsertCodeBlock />
-          <ListsToggle />
-          <BlockTypeSelect />
-          <InsertTable />
-          <InsertThematicBreak />
-          <InsertAdmonition />
-        </DiffSourceToggleWrapper>
-      ),
-    }),
-    listsPlugin(),
-    linkPlugin(),
-    quotePlugin(),
-    headingsPlugin(),
-    tablePlugin(),
-    thematicBreakPlugin(),
-    codeBlockPlugin({ defaultCodeBlockLanguage: "txt" }),
-    codeMirrorPlugin({
-      codeBlockLanguages: {
-        txt: "text",
-        html: "Html",
-        css: "CSS",
-        js: "JavaScript",
-        json: "JSON",
-        ts: "TypeScript",
-        jsx: "JavaScript",
-        tsx: "TypeScript",
-        cs: "C#",
-        go: "Go",
-        py: "Python",
-        rs: "Rust",
-        hpp: "C++",
-        cpp: "C++",
-        zig: "Zig",
-        h: "C",
-        c: "C",
-      },
-    }),
-    directivesPlugin({ directiveDescriptors: [AdmonitionDirectiveDescriptor] }),
-    diffSourcePlugin({ viewMode: "rich-text", diffMarkdown }),
-    markdownShortcutPlugin(),
-  ];
+  const allPlugins = (diffMarkdown: string) => {
+    const plugins = [
+      listsPlugin(),
+      linkPlugin(),
+      quotePlugin(),
+      headingsPlugin(),
+      tablePlugin(),
+      thematicBreakPlugin(),
+      codeBlockPlugin({ defaultCodeBlockLanguage: "txt" }),
+      codeMirrorPlugin({
+        codeBlockLanguages: {
+          txt: "text",
+          html: "Html",
+          css: "CSS",
+          js: "JavaScript",
+          json: "JSON",
+          ts: "TypeScript",
+          jsx: "JavaScript",
+          tsx: "TypeScript",
+          hpp: "C++",
+          cpp: "C++",
+          zig: "Zig",
+          h: "C",
+          c: "C",
+          cs: "C#",
+          py: "Python",
+          rs: "Rust",
+          go: "Go",
+        },
+      }),
+      directivesPlugin({ directiveDescriptors: [AdmonitionDirectiveDescriptor] }),
+      diffSourcePlugin({ viewMode: "rich-text", diffMarkdown }),
+      markdownShortcutPlugin(),
+    ];
+
+    if (config.showEditorToolbar) {
+      plugins.unshift(
+        toolbarPlugin({
+          toolbarContents: () => (
+            <DiffSourceToggleWrapper>
+              <BoldItalicUnderlineToggles />
+              <CodeToggle />
+              <InsertCodeBlock />
+              <ListsToggle />
+              <BlockTypeSelect />
+              <InsertTable />
+              <InsertThematicBreak />
+              <InsertAdmonition />
+            </DiffSourceToggleWrapper>
+          ),
+        }),
+      );
+    }
+
+    return plugins;
+  };
 
   return (
     <Editor

@@ -5,6 +5,7 @@ import {
   CONFIG_FILE_NAME,
   DEFAULT_FILE_NAME,
   DIALOG_FILTERS,
+  INITIAL_OBSIDIAN_CONFIG,
   View,
   WELCOME_CONTENT,
   deleteFile,
@@ -25,13 +26,7 @@ export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
 export const viewAtom = atom<View>(View.Editor);
-export const configAtom = atom<ObsidianConfig>({
-  lastOpenedDir: "",
-  theme: "",
-  welcomeContent: true,
-  showSidebar: true,
-  openFirstFile: false,
-});
+export const configAtom = atom<ObsidianConfig>(INITIAL_OBSIDIAN_CONFIG);
 
 export const updateConfigDataAtom = atom(
   null,
@@ -57,6 +52,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
         welcomeContent: config.welcomeContent ?? true,
         showSidebar: config.showSidebar ?? true,
         openFirstFile: config.openFirstFile ?? false,
+        showEditorToolbar: config.showEditorToolbar ?? true,
       };
       set(configAtom, config);
       setTheme(config.theme ?? "");

@@ -1,4 +1,4 @@
-import { ObsidianConfig } from "@/models";
+import { ObsidianConfig } from "@/libs";
 
 export const INITIAL_OBSIDIAN_CONFIG: ObsidianConfig = {
   lastOpenedDir: "",

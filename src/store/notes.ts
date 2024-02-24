@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { NoteContent, NoteInfo, ObsidianConfig } from "@/models";
 import { dataDir } from "@tauri-apps/api/path";
 import {
   CONFIG_FILE_NAME,
@@ -13,6 +12,9 @@ import {
   readFile,
   setTheme,
   writeFile,
+  NoteContent,
+  NoteInfo,
+  ObsidianConfig,
 } from "@/libs";
 import { unwrap } from "jotai/utils";
 import { ask, open, save } from "@tauri-apps/api/dialog";

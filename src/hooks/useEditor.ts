@@ -2,8 +2,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { saveNoteAtom, selectedNoteAtom } from "@/store";
 import { useRef } from "react";
 import { MDXEditorMethods } from "@mdxeditor/editor";
-import { NoteContent } from "@/models";
-import { AUTO_SAVING_TIME } from "@/libs";
+import { AUTO_SAVING_TIME, NoteContent } from "@/libs";
 import { throttle } from "lodash";
 
 export const useEditor = () => {

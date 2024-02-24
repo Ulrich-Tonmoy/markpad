@@ -1,7 +1,7 @@
 export const welcome = `
-> If you want your new notes to be empty uncheck 'add welcome content' from settings.
+> You can toggle 'Welcome Content' 'Editor Toolbar' 'Open Note By Default' 'Theme' from settings.
 
-## Welcome to Obsidian 👋🏻
+# Welcome to Obsidian 👋🏻
 
 Obsidian is a simple **note-taking app** that uses **Markdown** syntax to format your notes.
 
@@ -9,18 +9,23 @@ You can create your first note by clicking on the top-left icon on the sidebar, 
 
 Following there's a quick overview of the currently supported Markdown syntax.
 
-## Text formatting
+### In here, you can find the following markdown elements:
 
-- Select a text and press Ctrl+B to make it bold, Ctrl+I to make it italic.
-
-This is a **bold** text.
-This is an _italic_ text.
+* Headings
+* Lists
+  * Unordered
+  * Ordered
+  * Check lists
+  * And nested ;)
+* Links
+* Bold/Italic/Underline formatting
+* Tables
+* Code block editors
+* And much more.
 
 ## Headings
 
-- Use one to six # characters to create a heading. The number of # characters determines the heading level.
-
-Here are all the heading formats currently supported by **_NoteMark_**:
+* Use one to six # characters to create a heading. The number of # characters determines the heading level.
 
 # Heading 1
 
@@ -30,15 +35,23 @@ Here are all the heading formats currently supported by **_NoteMark_**:
 
 #### Heading 4
 
-### Bulleted list
+##### Heading 5
 
-- Use * or - to create a list item.
+###### Heading 6
+
+## Lists
+
+* Use \* or - to create a list item.
+* User Number 1. to create Number list
+* Use \* \[ ] for check list
 
 For example, you can add a list of bullet points:
 
-- Bullet point 1
-- Bullet point 2
-- Bullet point 3
+### Unordered List
+
+* Bullet point 1
+* Bullet point 2
+* Bullet point 3
 
 ### Numbered list
 
@@ -48,23 +61,52 @@ Here we have a numbered list:
 2. Numbered list item 2
 3. Numbered list item 3
 
-### Blockquote
+### Check list
 
-- Use > to create a block quote.
+* [x] Check list item 1
+* [ ] Check list item 2
+* [ ] Check list item 3
+
+## Text formatting
+
+* Select a text and press Ctrl + B to make it bold, Ctrl + I to make it italic and Ctrl + U to underline.
+
+This is a **bold** text.
+This is an *italic* text.
+This is an<u> underline </u>text.
+
+## Blockquote
+
+* Use > to create a block quote.
 
 > This is a blockquote. You can use it to emphasize some text or to cite someone.
 
-### Code blocks
+## Code blocks
 
-- Use \` to create inline code.
+* Use \` to create inline code.
 
-Only \`inline code\` is currently supported!
+\`inline code\`
 
-- Type \`\`\`$lang (with $lang being any supported language, followed by space) to insert a code block.
+## A code sample
 
-Code block snippets using the following syntax _\`\`\`js\`\`\`_ are **_not supported_** yet!
+* Type \`\`\`\\<lang\> (with \\<lang\> being any supported language extension) to insert a code block.
+  Obsidian embeds CodeMirror for code editing.
 
-### Links
+\`\`\`tsx
+export default function App() {
+  return (<div>Hello world</div>)
+}
+\`\`\`
 
-Links are **_not supported_** yet!
+## A table
+
+Play with the table below - add rows, columns, change column alignment. When editing,
+you can navigate the cells with \`enter\`, \`shift+enter\`, \`tab\` and \`shift+tab\`.
+
+| Item              | In Stock | Price |
+| :---------------- | :------: | ----: |
+| Python Hat        |   True   | 23.99 |
+| SQL Hat           |   True   | 23.99 |
+| Codecademy Tee    |   False  | 19.99 |
+| Codecademy Hoodie |   False  | 42.99 |
 `;

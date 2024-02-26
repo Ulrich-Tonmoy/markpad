@@ -1,6 +1,7 @@
 ### 0.0.5:
 
 - [x] Add MDX Toolbar
+- [x] Build Size decreased to half
 
 ### 0.0.4:
 

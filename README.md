@@ -12,7 +12,7 @@
     <img src="./docs/settings.png" alt="Settings"/>
 </div>
 
-Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [NoteMark Repo](https://github.com/gionathas/NoteMark). I added few additional features and used `Tauri` instead of `Electron`.
+Got the idea from [this electron app tutorial](https://youtu.be/t8ane4BDyC8) & [NoteMark Repo](https://github.com/gionathas/NoteMark). I added few additional features and used `Tauri` instead of `Electron`. Other Markdown Editor [Typethings](https://github.com/pheralb/typethings) - [Mediocre](https://github.com/nilaysavant/mediocre) - [Typability](https://github.com/SimonShiki/Typability)
 
 ## [Features lists here](./docs/v-features.md)
 

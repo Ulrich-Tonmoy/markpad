@@ -75,9 +75,12 @@
 
 .cm-scroller {
   font-size: 1.2rem !important;
-  height: 91vh !important;
 }
 
 ._diffSourceToggle_19o4e_938 > button:nth-child(2) {
+  display: none;
+}
+
+._multiFieldForm_19o4e_1144 > div:first-child {
   display: none;
 }

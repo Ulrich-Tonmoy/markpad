@@ -22,6 +22,8 @@ import {
   InsertAdmonition,
   InsertCodeBlock,
   linkPlugin,
+  imagePlugin,
+  InsertImage,
 } from "@mdxeditor/editor";
 import { useEditor } from "@/hooks";
 import "./MDXEditor.css";
@@ -65,6 +67,7 @@ export const MDXEditor = () => {
           go: "Go",
         },
       }),
+      imagePlugin(),
       directivesPlugin({ directiveDescriptors: [AdmonitionDirectiveDescriptor] }),
       diffSourcePlugin({ viewMode: "rich-text", diffMarkdown }),
       markdownShortcutPlugin(),
@@ -81,6 +84,7 @@ export const MDXEditor = () => {
               <ListsToggle />
               <BlockTypeSelect />
               <InsertTable />
+              <InsertImage />
               <InsertThematicBreak />
               <InsertAdmonition />
             </DiffSourceToggleWrapper>
@@ -101,7 +105,7 @@ export const MDXEditor = () => {
       onChange={handleAutoSaving}
       onBlur={handleBlur}
       plugins={allPlugins(selectedNote.content)}
-      contentEditableClassName="outline-none min-h-[calc(100vh-28px)] max-w-none md:text-lg text-sm px-4 py-2.5 caret-cursor prose prose-invert prose-p:my-3 prose-p:leading-relaxed prose-headings:my-4 prose-blockquote:my-4 prose-ul:my-2 prose-li:my-0 prose-code:px-1 prose-code:text-red-500 prose-code:before:content-[''] prose-code:after:content-['']"
+      contentEditableClassName="outline-none min-h-[calc(100vh-28px)] max-w-none md:text-lg text-sm px-4 py-2.5 caret-cursor prose prose-invert prose-p:my-3 prose-p:leading-relaxed prose-headings:my-4 prose-blockquote:my-4 prose-ul:my-2 prose-li:my-0 prose-code:px-1 prose-code:text-red-500 prose-code:before:content-[''] prose-code:after:content-[''] popupContainer:z-10"
     />
   );
 };

@@ -21,6 +21,7 @@ Following there's a quick overview of the currently supported Markdown syntax.
 * Bold/Italic/Underline formatting
 * Tables
 * Code block editors
+* Images
 * And much more.
 
 ## Headings
@@ -109,4 +110,10 @@ you can navigate the cells with \`enter\`, \`shift+enter\`, \`tab\` and \`shift+
 | SQL Hat           |   True   | 23.99 |
 | Codecademy Tee    |   False  | 19.99 |
 | Codecademy Hoodie |   False  | 42.99 |
+
+## Image
+
+Local image is not supported
+
+![Programming Evolution](https://www.itprotoday.com/sites/itprotoday.com/files/styles/article_featured_retina/public/programming%20evolution.jpg?itok=WTj9-yNz)
 `;

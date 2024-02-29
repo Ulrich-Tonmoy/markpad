@@ -58,3 +58,29 @@
   --admonitionBorder: darkkhaki;
   --admonitionBg: yellow;
 }
+
+.prose :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.mdxeditor-source-editor,
+.mdxeditor-diff-editor {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.cm-lineNumbers {
+  font-size: 1.2rem !important;
+}
+
+.cm-scroller {
+  font-size: 1.2rem !important;
+}
+
+._diffSourceToggle_19o4e_938 > button:nth-child(2) {
+  display: none;
+}
+
+._multiFieldForm_19o4e_1144 > div:first-child {
+  display: none;
+}

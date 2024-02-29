@@ -1,3 +1,10 @@
+# 0.0.6
+
+- [x] Image plugin
+- [x] file name update
+- [x] Source editor dark mode
+- [x] For thematic break lower the padding margin
+
 ### 0.0.5:
 
 - [x] Add MDX Toolbar

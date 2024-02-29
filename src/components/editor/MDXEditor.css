@@ -58,3 +58,8 @@
   --admonitionBorder: darkkhaki;
   --admonitionBg: yellow;
 }
+
+.prose :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

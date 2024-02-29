@@ -63,3 +63,21 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+.mdxeditor-source-editor,
+.mdxeditor-diff-editor {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.cm-lineNumbers {
+  font-size: 1.2rem !important;
+}
+
+.cm-scroller {
+  font-size: 1.2rem !important;
+  height: 91vh !important;
+}
+
+._diffSourceToggle_19o4e_938 > button:nth-child(2) {
+  display: none;
+}

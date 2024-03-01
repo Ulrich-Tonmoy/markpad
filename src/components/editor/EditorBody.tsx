@@ -8,8 +8,10 @@ export const EditorBody = () => {
 
   return (
     <>
+      {view === View.Null && <div>Welcome</div>}
       {view === View.Editor && <MDXEditor />}
       {view === View.Settings && <Settings />}
+      {view === View.Recent && <div>Recent</div>}
     </>
   );
 };

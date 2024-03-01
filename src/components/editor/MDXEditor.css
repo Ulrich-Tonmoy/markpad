@@ -20,11 +20,15 @@
     }
 
     & li[role="checkbox"]::before {
-      transform: translate(6px, 6px);
+      transform: translate(6px, 7px);
     }
 
     & li[role="checkbox"]::after {
-      transform: translate(6px, 6px) rotate(45deg);
+      transform: translate(6px, 7px) rotate(45deg);
+    }
+
+    & li[role="checkbox"] > :first-child {
+      margin-left: 5px;
     }
   }
 }

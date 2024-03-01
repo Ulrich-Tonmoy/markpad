@@ -1,14 +1,15 @@
 import { LuCog } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { useSetAtom } from "jotai";
-import { updateViewAtom } from "@/store";
+import { useAtomValue, useSetAtom } from "jotai";
+import { updateViewAtom, viewAtom } from "@/store";
 import { View } from "@/libs";
 
 export const SettingsButton = ({ ...props }: ActionButtonProps) => {
+  const view = useAtomValue(viewAtom);
   const updateView = useSetAtom(updateViewAtom);
 
   const openSettings = async () => {
-    updateView(View.Settings);
+    view == View.Settings ? updateView(View.Null) : updateView(View.Settings);
   };
 
   return (

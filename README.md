@@ -1,14 +1,14 @@
 <div  align="center">
-    <img src="./docs/logo.png" alt="Obsidian Logo" title="Obsidian" width="200"/>
-    <h1>Obsidian</h1>
-    <h3>A Simple MarkDown Editor built with Tauri.</h3>
+    <img src="./docs/logo.png" alt="Markpad Logo" title="Markpad" width="200"/>
+    <h1>Markpad</h1>
+    <h3>A Simple MarkDown Notepad or Markpad built with Tauri.</h3>
 </div>
 
 > [!NOTE]  
-> [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/obsidian/releases)
+> [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/markpad/releases)
 
 <div  align="center">
-    <img src="./docs/obsidian.png" alt="Obsidian"/>
+    <img src="./docs/markpad.png" alt="Markpad"/>
 </div>
 
 ## [Features lists here](./docs/v-features.md)

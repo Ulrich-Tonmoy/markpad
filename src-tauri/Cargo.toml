@@ -1,10 +1,10 @@
 [package]
-name = "obsidian"
+name = "markpad"
 version = "0.0.6"
-description = "Obsidian"
+description = "Markpad"
 authors = ["Ulrich-Tonmoy"]
 license = ""
-repository = "https://github.com/Ulrich-Tonmoy/obsidian"
+repository = "https://github.com/Ulrich-Tonmoy/markpad"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

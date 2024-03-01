@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "Obsidian",
+    "productName": "Markpad",
     "version": "0.0.6"
   },
   "tauri": {
@@ -24,7 +24,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "Obsidian",
+      "identifier": "Markpad",
       "icon": ["icons/logo.png", "icons/logo.ico"]
     },
     "security": {
@@ -34,7 +34,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Obsidian",
+        "title": "Markpad",
         "width": 1000,
         "height": 700,
         "minWidth": 500,

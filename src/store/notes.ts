@@ -19,6 +19,7 @@ import {
 import { unwrap } from "jotai/utils";
 import { ask, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
+import { updateRecentFolders } from ".";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
@@ -86,6 +87,8 @@ export const openNotesAtom = atom(null, async (get, set) => {
   const dirPath = await dataDirPath();
   const obsidian = get(configAtom);
 
+  const title = await basename(selected.toString());
+
   readDirectory(fullPath).then((files) => {
     obsidian.lastOpenedDir = fullPath;
     set(configAtom, obsidian);
@@ -97,6 +100,7 @@ export const openNotesAtom = atom(null, async (get, set) => {
     set(openedFolderPathAtom, fullPath);
     set(notesAtom, sortedNotes);
   });
+  updateRecentFolders({ title, path: fullPath, lastOpenTime: new Date().getTime() });
 });
 
 const selectedNoteAtomAsync = atom(async (get) => {

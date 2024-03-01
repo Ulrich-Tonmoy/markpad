@@ -38,7 +38,7 @@ export const TitleBar = () => {
       </div>
       <div className="flex items-center">
         <img
-          className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-gray-800"
+          className="px-2 py-1 text-center cursor-pointer size-7 hover:bg-gray-800"
           src="/minimize.svg"
           alt="Minimize"
           title="Minimize"
@@ -46,7 +46,7 @@ export const TitleBar = () => {
         />
         {isScaleUp ? (
           <img
-            className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-gray-800"
+            className="px-2 py-1 text-center cursor-pointer size-7 hover:bg-gray-800"
             src="restore-down.svg"
             alt="Restore Down"
             title="Restore Down"
@@ -54,7 +54,7 @@ export const TitleBar = () => {
           />
         ) : (
           <img
-            className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-gray-800"
+            className="px-2 py-1 text-center cursor-pointer size-7 hover:bg-gray-800"
             src="maximize.svg"
             alt="Maximize"
             title="Maximize"
@@ -62,7 +62,7 @@ export const TitleBar = () => {
           />
         )}
         <img
-          className="px-2 py-1 text-center cursor-pointer w-7 h-7 hover:bg-red-500"
+          className="px-2 py-1 text-center cursor-pointer size-7 hover:bg-red-500"
           src="close.svg"
           alt="Close"
           title="Close"

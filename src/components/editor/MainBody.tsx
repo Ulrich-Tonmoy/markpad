@@ -3,7 +3,7 @@ import { MDXEditor, Settings } from "@/components";
 import { useAtomValue } from "jotai";
 import { viewAtom } from "@/store";
 
-export const EditorBody = () => {
+export const MainBody = () => {
   const view = useAtomValue(viewAtom);
 
   return (

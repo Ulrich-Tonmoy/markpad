@@ -2,7 +2,7 @@ import { useRef } from "react";
 import {
   ActionButtonsLayout,
   Content,
-  EditorBody,
+  MainBody,
   NotePreviewList,
   RootLayout,
   Sidebar,
@@ -28,7 +28,7 @@ function App() {
           />
         </Sidebar>
         <Content className="border-l bg-editor border-border">
-          <EditorBody />
+          <MainBody />
         </Content>
       </RootLayout>
     </>

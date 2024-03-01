@@ -1,2 +1,2 @@
 export * from "./MDXEditor";
-export * from "./EditorBody";
+export * from "./MainBody";

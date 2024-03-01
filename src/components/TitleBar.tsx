@@ -36,7 +36,7 @@ export const TitleBar = () => {
         <SettingsButton className="border-none" />
       </div>
       <div data-tauri-drag-region className="cursor-default text-text">
-        Obsidian {selectedNote && `- ${selectedNote.title}`}
+        Markpad {selectedNote && `- ${selectedNote.title}`}
       </div>
       <div className="flex items-center">
         <img

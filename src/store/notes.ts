@@ -4,7 +4,7 @@ import {
   CONFIG_FILE_NAME,
   DEFAULT_FILE_NAME,
   DIALOG_FILTERS,
-  INITIAL_OBSIDIAN_CONFIG,
+  INITIAL_CONFIG,
   View,
   WELCOME_CONTENT,
   deleteFile,
@@ -14,7 +14,7 @@ import {
   writeFile,
   NoteContent,
   NoteInfo,
-  ObsidianConfig,
+  MarkpadConfig,
 } from "@/libs";
 import { unwrap } from "jotai/utils";
 import { ask, open, save } from "@tauri-apps/api/dialog";
@@ -28,12 +28,12 @@ const dataDirPath = async () => {
 export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
-export const viewAtom = atom<View>(View.Editor);
-export const configAtom = atom<ObsidianConfig>(INITIAL_OBSIDIAN_CONFIG);
+export const viewAtom = atom<View>(View.Null);
+export const configAtom = atom<MarkpadConfig>(INITIAL_CONFIG);
 
 export const updateConfigDataAtom = atom(
   null,
-  async (_get, _set, config: ObsidianConfig) => {
+  async (_get, _set, config: MarkpadConfig) => {
     const dirPath = await dataDirPath();
     await writeFile(dirPath, JSON.stringify(config));
   },
@@ -48,7 +48,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
   const dirPath = await dataDirPath();
   readFile(dirPath).then((res: string) => {
     if (res !== "ERROR") {
-      let config: ObsidianConfig = JSON.parse(res);
+      let config: MarkpadConfig = JSON.parse(res);
       config = {
         lastOpenedDir: config.lastOpenedDir ?? null,
         theme: config.theme ?? "",
@@ -70,7 +70,10 @@ export const loadNotesAtom = atom(null, async (_, set) => {
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );
         set(notesAtom, sortedNotes);
-        if (config.openFirstFile) set(selectedNoteIndexAtom, 0);
+        if (config.openFirstFile) {
+          set(selectedNoteIndexAtom, 0);
+          set(viewAtom, View.Editor);
+        }
       });
     }
   });
@@ -85,14 +88,14 @@ export const openNotesAtom = atom(null, async (get, set) => {
 
   const fullPath = selected + "\\";
   const dirPath = await dataDirPath();
-  const obsidian = get(configAtom);
+  const markpad = get(configAtom);
 
   const title = await basename(selected.toString());
 
   readDirectory(fullPath).then((files) => {
-    obsidian.lastOpenedDir = fullPath;
-    set(configAtom, obsidian);
-    writeFile(dirPath, JSON.stringify(obsidian));
+    markpad.lastOpenedDir = fullPath;
+    set(configAtom, markpad);
+    writeFile(dirPath, JSON.stringify(markpad));
 
     const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,

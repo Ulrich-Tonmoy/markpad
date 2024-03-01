@@ -1,4 +1,4 @@
-export type ObsidianConfig = {
+export type MarkpadConfig = {
   lastOpenedDir: string;
   theme: string;
   welcomeContent: boolean;

@@ -12,9 +12,11 @@ export const SettingsButton = ({ ...props }: ActionButtonProps) => {
     view == View.Settings ? updateView(View.Null) : updateView(View.Settings);
   };
 
+  const color = view == View.Settings ? "#8F00FF" : "";
+
   return (
     <ActionButton onClick={openSettings} {...props} title="Settings">
-      <LuCog className="w-4 h-4 text-text" />
+      <LuCog className="w-4 h-4 text-text" color={color} />
     </ActionButton>
   );
 };

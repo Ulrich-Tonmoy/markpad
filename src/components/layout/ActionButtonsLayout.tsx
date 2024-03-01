@@ -1,10 +1,5 @@
 import { ComponentProps } from "react";
-import {
-  OpenFolderButton,
-  DeleteNoteButton,
-  NewNoteButton,
-  SettingsButton,
-} from "@/components";
+import { OpenFolderButton, DeleteNoteButton, NewNoteButton } from "@/components";
 
 export const ActionButtonsLayout = ({ ...props }: ComponentProps<"div">) => {
   return (
@@ -12,7 +7,6 @@ export const ActionButtonsLayout = ({ ...props }: ComponentProps<"div">) => {
       <NewNoteButton />
       <OpenFolderButton />
       <DeleteNoteButton />
-      <SettingsButton />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 import { useAtomValue } from "jotai";
 import { selectedNoteAtom } from "@/store";
-import { RecentVewButton, SidebarVewButton } from ".";
+import { RecentVewButton, SettingsButton, SidebarVewButton } from ".";
 
 export const TitleBar = () => {
   const [isScaleUp, setIsScaleUp] = useState(false);
@@ -33,6 +33,7 @@ export const TitleBar = () => {
         />
         <SidebarVewButton className="border-none" />
         <RecentVewButton className="border-none" />
+        <SettingsButton className="border-none" />
       </div>
       <div data-tauri-drag-region className="cursor-default text-text">
         Obsidian {selectedNote && `- ${selectedNote.title}`}

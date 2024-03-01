@@ -26,7 +26,7 @@ export const RecentFolderList = ({ className, ...props }: RecentFolderListProps)
       <div className="flex justify-between">
         <h1 className="p-2 m-2 text-3xl font-bold">Recently Opened Folders {"->"}</h1>
         <button
-          className="h-10 p-2 m-2 font-bold text-white bg-red-500 rounded w-30 hover:bg-red-700"
+          className="p-2 m-2 font-bold text-white bg-red-500 rounded w-max h-max hover:bg-red-700"
           onClick={() => handleClearRecent()}
         >
           Clear Recent

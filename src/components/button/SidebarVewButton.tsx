@@ -2,6 +2,7 @@ import { FaFolderTree } from "react-icons/fa6";
 import { ActionButton, ActionButtonProps } from "@/components";
 import { useAtom, useSetAtom } from "jotai";
 import { configAtom, updateConfigDataAtom } from "@/store";
+import { cn } from "@/libs";
 
 export const SidebarVewButton = ({ ...props }: ActionButtonProps) => {
   const [config, setConfig] = useAtom(configAtom);
@@ -13,10 +14,9 @@ export const SidebarVewButton = ({ ...props }: ActionButtonProps) => {
     await updateConfigData(updatedConfig);
   };
 
-  const color = config.showSidebar ? "#8F00FF" : "";
   return (
     <ActionButton onClick={handleSidebarToggle} {...props} title="Collapse Sidebar">
-      <FaFolderTree className="w-4 h-4 text-text" color={color} />
+      <FaFolderTree className={cn("size-4", { "text-violet-500": config.showSidebar })} />
     </ActionButton>
   );
 };

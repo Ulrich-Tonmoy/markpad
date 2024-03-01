@@ -2,7 +2,7 @@ import { LuCog } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
 import { useAtomValue, useSetAtom } from "jotai";
 import { updateViewAtom, viewAtom } from "@/store";
-import { View } from "@/libs";
+import { View, cn } from "@/libs";
 
 export const SettingsButton = ({ ...props }: ActionButtonProps) => {
   const view = useAtomValue(viewAtom);
@@ -12,11 +12,9 @@ export const SettingsButton = ({ ...props }: ActionButtonProps) => {
     view == View.Settings ? updateView(View.Null) : updateView(View.Settings);
   };
 
-  const color = view == View.Settings ? "#8F00FF" : "";
-
   return (
     <ActionButton onClick={openSettings} {...props} title="Settings">
-      <LuCog className="w-4 h-4 text-text" color={color} />
+      <LuCog className={cn("size-5", { "text-violet-500": view == View.Settings })} />
     </ActionButton>
   );
 };

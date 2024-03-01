@@ -35,6 +35,13 @@ export const updateRecentFolders = async (recent: RecentFolder) => {
   });
 };
 
+export const clearRecentFolders = async () => {
+  const dirPath = await dataDirPath();
+  let recentFolders: RecentFolder[] = [];
+
+  writeFile(dirPath, JSON.stringify(recentFolders));
+};
+
 export const loadRecentFoldersAtom = atom(null, async (_, set) => {
   const dirPath = await dataDirPath();
   readFile(dirPath).then((res: string) => {

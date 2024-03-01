@@ -106,6 +106,26 @@ export const openNotesAtom = atom(null, async (get, set) => {
   updateRecentFolders({ title, path: fullPath, lastOpenTime: new Date().getTime() });
 });
 
+export const openNotesUsingPathAtom = atom(null, async (get, set, path: string) => {
+  const dirPath = await dataDirPath();
+  const markpad = get(configAtom);
+
+  const title = await basename(path);
+
+  readDirectory(path).then((files) => {
+    markpad.lastOpenedDir = path;
+    set(configAtom, markpad);
+    writeFile(dirPath, JSON.stringify(markpad));
+
+    const sortedNotes = files.sort(
+      (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
+    );
+    set(openedFolderPathAtom, path);
+    set(notesAtom, sortedNotes);
+  });
+  updateRecentFolders({ title, path: path, lastOpenTime: new Date().getTime() });
+});
+
 const selectedNoteAtomAsync = atom(async (get) => {
   const notes = get(notesAtom);
   const selectedNoteIndex = get(selectedNoteIndexAtom);

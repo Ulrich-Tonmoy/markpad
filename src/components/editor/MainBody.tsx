@@ -1,5 +1,5 @@
 import { View } from "@/libs";
-import { MDXEditor, Settings } from "@/components";
+import { MDXEditor, RecentFolderList, Settings } from "@/components";
 import { useAtomValue } from "jotai";
 import { viewAtom } from "@/store";
 
@@ -11,7 +11,7 @@ export const MainBody = () => {
       {view === View.Null && <div>Welcome</div>}
       {view === View.Editor && <MDXEditor />}
       {view === View.Settings && <Settings />}
-      {view === View.Recent && <div>Recent</div>}
+      {view === View.Recent && <RecentFolderList />}
     </>
   );
 };

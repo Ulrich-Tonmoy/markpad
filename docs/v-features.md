@@ -2,7 +2,7 @@
 
 - [x] Spacing added after checkbox
 - [x] Editor Action Buttons moved to title bar
-- [x] Recent Open Folder Page
+- [x] Recently Opened Folders Page
 
 # 0.0.6
 

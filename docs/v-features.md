@@ -1,3 +1,7 @@
+# 0.0.7
+
+- [x] Spacing added after checkbox
+
 # 0.0.6
 
 - [x] Image plugin

@@ -3,6 +3,7 @@
 - [x] Spacing added after checkbox
 - [x] Editor Action Buttons moved to title bar
 - [x] Recently Opened Folders Page
+- [x] Keep Window State (Maximize/Minimize)
 
 # 0.0.6
 

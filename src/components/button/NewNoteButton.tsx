@@ -1,10 +1,9 @@
 import { LuFileSignature } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { createEmptyNoteAtom } from "@/store";
-import { useSetAtom } from "jotai";
+import { useConfig } from "@/hooks";
 
 export const NewNoteButton = ({ ...props }: ActionButtonProps) => {
-  const createEmptyNote = useSetAtom(createEmptyNoteAtom);
+  const { createEmptyNote } = useConfig();
 
   const handleCreation = async () => {
     await createEmptyNote();

@@ -1,12 +1,10 @@
 import { ActionButton, ActionButtonProps } from "@/components";
-import { useAtomValue, useSetAtom } from "jotai";
-import { updateViewAtom, viewAtom } from "@/store";
 import { FaClockRotateLeft } from "react-icons/fa6";
 import { View, cn } from "@/libs";
+import { useConfig } from "@/hooks";
 
 export const RecentVewButton = ({ ...props }: ActionButtonProps) => {
-  const view = useAtomValue(viewAtom);
-  const updateView = useSetAtom(updateViewAtom);
+  const { view, updateView } = useConfig();
 
   const openRecentFolders = async () => {
     view == View.Recent ? updateView(View.Null) : updateView(View.Recent);

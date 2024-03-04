@@ -1,15 +1,12 @@
 import { FaFolderTree } from "react-icons/fa6";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { useAtom, useSetAtom } from "jotai";
-import { configAtom, updateConfigDataAtom } from "@/store";
 import { cn } from "@/libs";
+import { useConfig } from "@/hooks";
 
 export const SidebarVewButton = ({ ...props }: ActionButtonProps) => {
-  const [config, setConfig] = useAtom(configAtom);
-  const updateConfigData = useSetAtom(updateConfigDataAtom);
+  const { config, updateConfigData } = useConfig();
 
   const handleSidebarToggle = async () => {
-    setConfig((prevConfig) => ({ ...prevConfig, showSidebar: !prevConfig.showSidebar }));
     const updatedConfig = { ...config, showSidebar: !config.showSidebar };
     await updateConfigData(updatedConfig);
   };

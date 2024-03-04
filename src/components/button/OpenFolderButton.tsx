@@ -1,12 +1,10 @@
 import { LuFolderSearch } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { loadNotesAtom, openNotesAtom } from "@/store";
-import { useSetAtom } from "jotai";
 import { useEffect } from "react";
+import { useConfig } from "@/hooks";
 
 export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
-  const openNotes = useSetAtom(openNotesAtom);
-  const loadNotes = useSetAtom(loadNotesAtom);
+  const { openNotes, loadNotes } = useConfig();
 
   const openFolder = async () => {
     openNotes();

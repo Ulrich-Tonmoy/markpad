@@ -33,8 +33,9 @@ export const configAtom = atom<MarkpadConfig>(INITIAL_CONFIG);
 
 export const updateConfigDataAtom = atom(
   null,
-  async (_get, _set, config: MarkpadConfig) => {
+  async (_get, set, config: MarkpadConfig) => {
     const dirPath = await dataDirPath();
+    set(configAtom, config);
     await writeFile(dirPath, JSON.stringify(config));
   },
 );

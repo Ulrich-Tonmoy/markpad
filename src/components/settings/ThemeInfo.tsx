@@ -1,16 +1,15 @@
 import { THEMES } from "@/libs";
 import { configAtom, updateConfigDataAtom } from "@/store";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
 import { setTheme } from "../../libs/utils";
 
 export const ThemeInfo = () => {
-  const [config, setConfig] = useAtom(configAtom);
+  const config = useAtomValue(configAtom);
   const updateConfigData = useSetAtom(updateConfigDataAtom);
 
   const toggleTheme = (theme: string) => {
     setTheme(theme);
-    setConfig((prevConfig) => ({ ...prevConfig, theme: theme }));
     const updatedConfig = { ...config, theme: theme };
     updateConfigData(updatedConfig);
   };

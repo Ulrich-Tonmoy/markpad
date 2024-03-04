@@ -1,28 +1,25 @@
 import { configAtom, updateConfigDataAtom } from "@/store";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { ChangeEvent } from "react";
 
 export const ConfigToggles = () => {
-  const [config, setConfig] = useAtom(configAtom);
+  const config = useAtomValue(configAtom);
   const updateConfigData = useSetAtom(updateConfigDataAtom);
 
   const handleWelcomeContentToggle = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
-    setConfig((prevConfig) => ({ ...prevConfig, welcomeContent: isChecked }));
     const updatedConfig = { ...config, welcomeContent: isChecked };
     updateConfigData(updatedConfig);
   };
 
   const handleOpenFirstToggle = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
-    setConfig((prevConfig) => ({ ...prevConfig, openFirstFile: isChecked }));
     const updatedConfig = { ...config, openFirstFile: isChecked };
     updateConfigData(updatedConfig);
   };
 
   const handleEditorToolbarToggle = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
-    setConfig((prevConfig) => ({ ...prevConfig, showEditorToolbar: isChecked }));
     const updatedConfig = { ...config, showEditorToolbar: isChecked };
     updateConfigData(updatedConfig);
   };

@@ -4,7 +4,6 @@ import {
   CONFIG_FILE_NAME,
   DEFAULT_FILE_NAME,
   DIALOG_FILTERS,
-  INITIAL_CONFIG,
   View,
   WELCOME_CONTENT,
   deleteFile,
@@ -19,7 +18,7 @@ import {
 import { unwrap } from "jotai/utils";
 import { ask, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
-import { updateRecentFolders } from ".";
+import { configAtom, updateRecentFolders, viewAtom } from ".";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
@@ -28,22 +27,6 @@ const dataDirPath = async () => {
 export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
-export const viewAtom = atom<View>(View.Null);
-export const configAtom = atom<MarkpadConfig>(INITIAL_CONFIG);
-
-export const updateConfigDataAtom = atom(
-  null,
-  async (_get, set, config: MarkpadConfig) => {
-    const dirPath = await dataDirPath();
-    set(configAtom, config);
-    await writeFile(dirPath, JSON.stringify(config));
-  },
-);
-
-export const updateViewAtom = atom(null, async (_, set, view: View) => {
-  set(viewAtom, view);
-  if (view === View.Settings) set(selectedNoteIndexAtom, null);
-});
 
 export const loadNotesAtom = atom(null, async (_, set) => {
   const dirPath = await dataDirPath();

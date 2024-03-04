@@ -6,4 +6,5 @@ export type MarkpadConfig = {
   openFirstFile: boolean;
   showEditorToolbar: boolean;
   isFullscreen: boolean;
+  keepWindowMaximized: boolean;
 };

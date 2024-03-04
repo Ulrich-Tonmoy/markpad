@@ -24,6 +24,12 @@ export const ConfigToggles = () => {
     updateConfigData(updatedConfig);
   };
 
+  const handleWindowMaximizedToggle = (event: ChangeEvent<HTMLInputElement>) => {
+    const isChecked = event.target.checked;
+    const updatedConfig = { ...config, keepWindowMaximized: isChecked };
+    updateConfigData(updatedConfig);
+  };
+
   return (
     <>
       <div className="flex items-center mt-3 text-lg text-text">
@@ -52,6 +58,15 @@ export const ConfigToggles = () => {
           onChange={handleEditorToolbarToggle}
         />
         Show Editor Toolbars
+      </div>
+      <div className="flex items-center mt-3 text-lg text-text">
+        <input
+          type="checkbox"
+          className="w-4 h-4 mr-2 cursor-pointer"
+          checked={config.keepWindowMaximized}
+          onChange={handleWindowMaximizedToggle}
+        />
+        Keep Window State Maximized/Minimized
       </div>
     </>
   );

@@ -8,4 +8,5 @@ export const INITIAL_CONFIG: MarkpadConfig = {
   openFirstFile: false,
   showEditorToolbar: true,
   isFullscreen: false,
+  keepWindowMaximized: false,
 };

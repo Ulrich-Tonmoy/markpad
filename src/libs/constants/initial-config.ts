@@ -7,4 +7,5 @@ export const INITIAL_CONFIG: MarkpadConfig = {
   showSidebar: true,
   openFirstFile: false,
   showEditorToolbar: true,
+  isFullscreen: false,
 };

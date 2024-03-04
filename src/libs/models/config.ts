@@ -5,4 +5,5 @@ export type MarkpadConfig = {
   showSidebar: boolean;
   openFirstFile: boolean;
   showEditorToolbar: boolean;
+  isFullscreen: boolean;
 };

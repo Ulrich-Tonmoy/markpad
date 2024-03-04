@@ -1,23 +1,33 @@
-import { useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
-import { useAtomValue } from "jotai";
-import { selectedNoteAtom } from "@/store";
+import { useAtomValue, useSetAtom } from "jotai";
+import { configAtom, selectedNoteAtom, updateConfigDataAtom } from "@/store";
 import { RecentVewButton, SettingsButton, SidebarVewButton } from ".";
+import { useEffect } from "react";
 
 export const TitleBar = () => {
-  const [isScaleUp, setIsScaleUp] = useState(false);
+  const config = useAtomValue(configAtom);
+  const updateConfigData = useSetAtom(updateConfigDataAtom);
   const selectedNote = useAtomValue(selectedNoteAtom);
 
   const onMinimize = () => appWindow.minimize();
   const onScaleUp = () => {
     appWindow.toggleMaximize();
-    setIsScaleUp(true);
+    const updatedConfig = { ...config, isFullscreen: true };
+    updateConfigData(updatedConfig);
   };
   const onScaleDown = () => {
     appWindow.toggleMaximize();
-    setIsScaleUp(false);
+    const updatedConfig = { ...config, isFullscreen: false };
+    updateConfigData(updatedConfig);
   };
   const onClose = () => appWindow.close();
+
+  useEffect(() => {
+    if (config.isFullscreen) {
+      appWindow.maximize();
+      console.log(appWindow);
+    }
+  }, [config.isFullscreen]);
 
   return (
     <div
@@ -46,7 +56,7 @@ export const TitleBar = () => {
           title="Minimize"
           onClick={onMinimize}
         />
-        {isScaleUp ? (
+        {config.isFullscreen ? (
           <img
             className="px-2 py-1 text-center cursor-pointer size-7 hover:bg-gray-800"
             src="restore-down.svg"

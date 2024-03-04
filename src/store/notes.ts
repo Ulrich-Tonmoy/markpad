@@ -40,6 +40,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
         showSidebar: config.showSidebar ?? true,
         openFirstFile: config.openFirstFile ?? false,
         showEditorToolbar: config.showEditorToolbar ?? true,
+        isFullscreen: config.isFullscreen ?? false,
       };
       set(configAtom, config);
       setTheme(config.theme ?? "");

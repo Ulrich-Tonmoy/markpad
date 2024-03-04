@@ -21,8 +21,14 @@ export const RecentFolderList = ({ className, ...props }: RecentFolderListProps)
 
   if (recentFolders.length === 0) {
     return (
-      <ul className={twMerge("text-center pt-4", className)} {...props}>
-        <span>No Recent folders.</span>
+      <ul
+        className={twMerge(
+          "text-center pt-4 h-[calc(100vh-50px)] flex justify-center items-center",
+          className,
+        )}
+        {...props}
+      >
+        <span className="text-3xl">No Recent folders.</span>
       </ul>
     );
   }

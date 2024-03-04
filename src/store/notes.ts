@@ -103,7 +103,7 @@ export const openNotesAtom = atom(null, async (get, set) => {
     set(openedFolderPathAtom, fullPath);
     set(notesAtom, sortedNotes);
   });
-  updateRecentFolders({ title, path: fullPath, lastOpenTime: new Date().getTime() });
+  updateRecentFolders(set, { title, path: fullPath, lastOpenTime: new Date().getTime() });
 });
 
 export const openNotesUsingPathAtom = atom(null, async (get, set, path: string) => {
@@ -123,7 +123,7 @@ export const openNotesUsingPathAtom = atom(null, async (get, set, path: string) 
     set(openedFolderPathAtom, path);
     set(notesAtom, sortedNotes);
   });
-  updateRecentFolders({ title, path: path, lastOpenTime: new Date().getTime() });
+  updateRecentFolders(set, { title, path: path, lastOpenTime: new Date().getTime() });
 });
 
 const selectedNoteAtomAsync = atom(async (get) => {

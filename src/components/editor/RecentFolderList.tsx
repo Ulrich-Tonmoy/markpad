@@ -1,13 +1,23 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
-import { useAtomValue } from "jotai";
-import { clearRecentFolders, recentFoldersAtom } from "@/store";
+import { useAtomValue, useSetAtom } from "jotai";
+import {
+  clearRecentFoldersAtom,
+  loadRecentFoldersAtom,
+  recentFoldersAtom,
+} from "@/store";
 import { RecentFolder } from ".";
 
 export type RecentFolderListProps = ComponentProps<"ul">;
 
 export const RecentFolderList = ({ className, ...props }: RecentFolderListProps) => {
   const recentFolders = useAtomValue(recentFoldersAtom);
+  const loadRecentFolders = useSetAtom(loadRecentFoldersAtom);
+  const clearRecentFolders = useSetAtom(clearRecentFoldersAtom);
+
+  useEffect(() => {
+    loadRecentFolders();
+  }, []);
 
   if (recentFolders.length === 0) {
     return (

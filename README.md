@@ -32,7 +32,7 @@
 > [!IMPORTANT]  
 > Tools Needed
 >
-> - [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
+> - [Node.js](https://nodejs.org/en/download/) + [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
 
 > [!NOTE]  
 > Commands

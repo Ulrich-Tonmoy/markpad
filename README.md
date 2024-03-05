@@ -4,7 +4,7 @@
     <h3>A Simple MarkDown Notepad or Markpad built with Tauri.</h3>
 </div>
 
-> # [!NOTE]
+> [!NOTE]
 >
 > ### [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/markpad/releases)
 >

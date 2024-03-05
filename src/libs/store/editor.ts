@@ -1,4 +1,10 @@
-import { CONFIG_FILE_NAME, INITIAL_CONFIG, MarkpadConfig, View, writeFile } from "@/libs";
+import {
+  CONFIG_FILE_NAME,
+  INITIAL_CONFIG,
+  MarkpadConfig,
+  ViewState,
+  writeFile,
+} from "@/libs";
 import { dataDir } from "@tauri-apps/api/path";
 import { atom } from "jotai";
 import { selectedNoteIndexAtom } from ".";
@@ -7,7 +13,7 @@ const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
 };
 
-export const viewAtom = atom<View>(View.Null);
+export const viewAtom = atom<ViewState>(ViewState.Null);
 export const configAtom = atom<MarkpadConfig>(INITIAL_CONFIG);
 
 export const updateConfigDataAtom = atom(
@@ -19,7 +25,7 @@ export const updateConfigDataAtom = atom(
   },
 );
 
-export const updateViewAtom = atom(null, async (_, set, view: View) => {
+export const updateViewAtom = atom(null, async (_, set, view: ViewState) => {
   set(viewAtom, view);
-  if (view === View.Settings) set(selectedNoteIndexAtom, null);
+  if (view === ViewState.Settings) set(selectedNoteIndexAtom, null);
 });

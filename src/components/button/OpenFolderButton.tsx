@@ -1,7 +1,7 @@
 import { LuFolderSearch } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
 import { useEffect } from "react";
-import { useConfig } from "@/hooks";
+import { useConfig } from "src/libs/hooks";
 
 export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
   const { openNotes, loadNotes } = useConfig();

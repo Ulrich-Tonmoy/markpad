@@ -1,6 +1,6 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { useAtomValue, useSetAtom } from "jotai";
-import { configAtom, selectedNoteAtom, updateConfigDataAtom } from "@/store";
+import { configAtom, selectedNoteAtom, updateConfigDataAtom } from "@/libs";
 import { RecentVewButton, SettingsButton, SidebarVewButton } from ".";
 import { useEffect } from "react";
 

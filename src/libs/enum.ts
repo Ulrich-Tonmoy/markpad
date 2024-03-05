@@ -1,4 +1,4 @@
-export enum View {
+export enum ViewState {
   Null,
   Editor,
   Settings,

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   ActionButtonsLayout,
   Content,
@@ -8,8 +8,7 @@ import {
   Sidebar,
   TitleBar,
 } from "@/components";
-import { useConfig } from "./hooks";
-import { View } from "./libs";
+import { useConfig, ViewState } from "@/libs";
 
 function App() {
   const contentContainerRef = useRef<HTMLDivElement>(null);
@@ -36,10 +35,14 @@ function App() {
           break;
         case "r":
           event.preventDefault();
-          view == View.Recent ? updateView(View.Null) : updateView(View.Recent);
+          view == ViewState.Recent
+            ? updateView(ViewState.Null)
+            : updateView(ViewState.Recent);
           break;
         case ",":
-          view == View.Settings ? updateView(View.Null) : updateView(View.Settings);
+          view == ViewState.Settings
+            ? updateView(ViewState.Null)
+            : updateView(ViewState.Settings);
           break;
         case "o":
           openNotes();

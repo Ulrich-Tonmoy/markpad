@@ -1,5 +1,9 @@
-import { RecentFolder as RecentFolderType, cn, formatDateFromMs } from "@/libs";
-import { openNotesUsingPathAtom } from "@/store";
+import {
+  RecentFolder as RecentFolderType,
+  cn,
+  formatDateFromMs,
+  openNotesUsingPathAtom,
+} from "@/libs";
 import { useSetAtom } from "jotai";
 import { ComponentProps } from "react";
 

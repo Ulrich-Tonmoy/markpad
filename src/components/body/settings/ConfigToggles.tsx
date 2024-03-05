@@ -1,4 +1,4 @@
-import { configAtom, updateConfigDataAtom } from "@/store";
+import { configAtom, updateConfigDataAtom } from "@/libs";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ChangeEvent } from "react";
 

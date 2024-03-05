@@ -4,8 +4,8 @@ import {
   openedFolderPathAtom,
   selectedNoteIndexAtom,
   updateViewAtom,
-} from "@/store";
-import { View } from "@/libs";
+  ViewState,
+} from "@/libs";
 
 export const useNotesList = ({ onSelect }: { onSelect?: () => void }) => {
   const updateView = useSetAtom(updateViewAtom);
@@ -15,7 +15,7 @@ export const useNotesList = ({ onSelect }: { onSelect?: () => void }) => {
 
   const handleNoteSelect = (index: number) => async () => {
     setSelectedNoteIndex(index);
-    updateView(View.Editor);
+    updateView(ViewState.Editor);
 
     if (onSelect) {
       onSelect();

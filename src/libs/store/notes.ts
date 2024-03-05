@@ -4,7 +4,7 @@ import {
   CONFIG_FILE_NAME,
   DEFAULT_FILE_NAME,
   DIALOG_FILTERS,
-  View,
+  ViewState,
   WELCOME_CONTENT,
   deleteFile,
   readDirectory,
@@ -58,7 +58,7 @@ export const loadNotesAtom = atom(null, async (_, set) => {
         set(notesAtom, sortedNotes);
         if (config.openFirstFile) {
           set(selectedNoteIndexAtom, 0);
-          set(viewAtom, View.Editor);
+          set(viewAtom, ViewState.Editor);
         }
       });
     }
@@ -194,7 +194,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
     lastEditTime: Date.now(),
   };
 
-  set(viewAtom, View.Editor);
+  set(viewAtom, ViewState.Editor);
   set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
   set(selectedNoteIndexAtom, 0);
 });

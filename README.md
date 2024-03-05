@@ -1,17 +1,18 @@
 <div  align="center">
-    <img src="./docs/logo.png" alt="Obsidian Logo" title="Obsidian" width="200"/>
-    <h1>Obsidian</h1>
-    <h3>A Simple MarkDown Editor built with Tauri.</h3>
+    <img src="./docs/logo.png" alt="Markpad Logo" title="Markpad" width="200"/>
+    <h1>Markpad</h1>
+    <h3>A Simple MarkDown Notepad or Markpad built with Tauri.</h3>
 </div>
 
-> [!NOTE]  
-> [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/obsidian/releases)
+> [!NOTE]
+>
+> ### [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/markpad/releases)
+>
+> ### [Features lists here](./docs/v-features.md)
 
 <div  align="center">
-    <img src="./docs/obsidian.png" alt="Obsidian"/>
+    <img src="./docs/markpad.png" alt="Markpad"/>
 </div>
-
-## [Features lists here](./docs/v-features.md)
 
 ### Technologies
 
@@ -32,7 +33,7 @@
 > [!IMPORTANT]  
 > Tools Needed
 >
-> - [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
+> - [Node.js](https://nodejs.org/en/download/) + [Rust](https://www.rust-lang.org/tools/install) + [Visual Studio C++ toolchain](https://visualstudio.microsoft.com/vs/features/cplusplus/)
 
 > [!NOTE]  
 > Commands

@@ -1,3 +1,12 @@
+# 0.0.7
+
+- [x] Spacing added after checkbox
+- [x] Editor Action Buttons moved to title bar
+- [x] Recently Opened Folders Page
+- [x] Keep Window State (Maximize/Minimize)
+- [x] Keyboard shortcut added
+- [x] Project Structure Improved
+
 # 0.0.6
 
 - [x] Image plugin

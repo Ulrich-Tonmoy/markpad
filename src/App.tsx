@@ -1,20 +1,72 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   ActionButtonsLayout,
   Content,
-  EditorBody,
+  MainBody,
   NotePreviewList,
   RootLayout,
   Sidebar,
   TitleBar,
 } from "@/components";
+import { useConfig, ViewState } from "@/libs";
 
 function App() {
   const contentContainerRef = useRef<HTMLDivElement>(null);
+  const {
+    config,
+    updateConfigData,
+    view,
+    updateView,
+    openNotes,
+    createEmptyNote,
+    deleteNote,
+  } = useConfig();
 
   const resetScroll = () => {
     contentContainerRef.current?.scrollTo(0, 0);
   };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.ctrlKey) {
+      switch (event.key) {
+        case "e":
+          const updatedConfig = { ...config, showSidebar: !config.showSidebar };
+          updateConfigData(updatedConfig);
+          break;
+        case "r":
+          event.preventDefault();
+          view == ViewState.Recent
+            ? updateView(ViewState.Null)
+            : updateView(ViewState.Recent);
+          break;
+        case ",":
+          view == ViewState.Settings
+            ? updateView(ViewState.Null)
+            : updateView(ViewState.Settings);
+          break;
+        case "o":
+          openNotes();
+          break;
+        case "n":
+          createEmptyNote();
+          break;
+        case "d":
+          deleteNote();
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return (
     <>
@@ -28,7 +80,7 @@ function App() {
           />
         </Sidebar>
         <Content className="border-l bg-editor border-border">
-          <EditorBody />
+          <MainBody />
         </Content>
       </RootLayout>
     </>

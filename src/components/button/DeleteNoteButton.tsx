@@ -6,13 +6,13 @@ import { useSetAtom } from "jotai";
 export const DeleteNoteButton = ({ ...props }: ActionButtonProps) => {
   const deleteNote = useSetAtom(deleteNoteAtom);
 
-  const handleDelete = async () => {
-    await deleteNote();
+  const handleDelete = () => {
+    deleteNote();
   };
 
   return (
     <ActionButton onClick={handleDelete} {...props} title="Delete Selected">
-      <FaRegTrashCan className="w-4 h-4 text-text" />
+      <FaRegTrashCan className="size-4" />
     </ActionButton>
   );
 };

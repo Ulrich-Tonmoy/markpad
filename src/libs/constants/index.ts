@@ -1,4 +1,5 @@
 export * from "./welcome";
-export * from "./obsidian.config";
-export * from "./theme.config";
 export * from "./config";
+export * from "./theme";
+export * from "./initial-config";
+export * from "./shortcut";

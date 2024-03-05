@@ -1,14 +1,12 @@
 import { LuFolderSearch } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { loadNotesAtom, openNotesAtom } from "@/store";
-import { useSetAtom } from "jotai";
 import { useEffect } from "react";
+import { useConfig } from "@/libs";
 
 export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
-  const openNotes = useSetAtom(openNotesAtom);
-  const loadNotes = useSetAtom(loadNotesAtom);
+  const { openNotes, loadNotes } = useConfig();
 
-  const openFolder = async () => {
+  const openFolder = () => {
     openNotes();
   };
 
@@ -18,7 +16,7 @@ export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
 
   return (
     <ActionButton onClick={openFolder} {...props} title="Open Folder">
-      <LuFolderSearch className="w-4 h-4 text-text" />
+      <LuFolderSearch className="size-4" />
     </ActionButton>
   );
 };

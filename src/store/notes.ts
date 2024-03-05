@@ -4,8 +4,7 @@ import {
   CONFIG_FILE_NAME,
   DEFAULT_FILE_NAME,
   DIALOG_FILTERS,
-  INITIAL_OBSIDIAN_CONFIG,
-  View,
+  ViewState,
   WELCOME_CONTENT,
   deleteFile,
   readDirectory,
@@ -14,11 +13,12 @@ import {
   writeFile,
   NoteContent,
   NoteInfo,
-  ObsidianConfig,
+  MarkpadConfig,
 } from "@/libs";
 import { unwrap } from "jotai/utils";
 import { ask, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
+import { configAtom, updateRecentFolders, viewAtom } from "@/store";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
@@ -27,27 +27,12 @@ const dataDirPath = async () => {
 export const openedFolderPathAtom = atom<string>("");
 export const notesAtom = atom<NoteInfo[] | null>(null);
 export const selectedNoteIndexAtom = atom<number | null>(null);
-export const viewAtom = atom<View>(View.Editor);
-export const configAtom = atom<ObsidianConfig>(INITIAL_OBSIDIAN_CONFIG);
-
-export const updateConfigDataAtom = atom(
-  null,
-  async (_get, _set, config: ObsidianConfig) => {
-    const dirPath = await dataDirPath();
-    await writeFile(dirPath, JSON.stringify(config));
-  },
-);
-
-export const updateViewAtom = atom(null, async (_, set, view: View) => {
-  set(viewAtom, view);
-  if (view === View.Settings) set(selectedNoteIndexAtom, null);
-});
 
 export const loadNotesAtom = atom(null, async (_, set) => {
   const dirPath = await dataDirPath();
   readFile(dirPath).then((res: string) => {
     if (res !== "ERROR") {
-      let config: ObsidianConfig = JSON.parse(res);
+      let config: MarkpadConfig = JSON.parse(res);
       config = {
         lastOpenedDir: config.lastOpenedDir ?? null,
         theme: config.theme ?? "",
@@ -55,6 +40,8 @@ export const loadNotesAtom = atom(null, async (_, set) => {
         showSidebar: config.showSidebar ?? true,
         openFirstFile: config.openFirstFile ?? false,
         showEditorToolbar: config.showEditorToolbar ?? true,
+        keepWindowMaximized: config.keepWindowMaximized ?? false,
+        isFullscreen: config.keepWindowMaximized ? config.isFullscreen : false,
       };
       set(configAtom, config);
       setTheme(config.theme ?? "");
@@ -69,7 +56,10 @@ export const loadNotesAtom = atom(null, async (_, set) => {
           (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
         );
         set(notesAtom, sortedNotes);
-        if (config.openFirstFile) set(selectedNoteIndexAtom, 0);
+        if (config.openFirstFile) {
+          set(selectedNoteIndexAtom, 0);
+          set(viewAtom, ViewState.Editor);
+        }
       });
     }
   });
@@ -84,12 +74,14 @@ export const openNotesAtom = atom(null, async (get, set) => {
 
   const fullPath = selected + "\\";
   const dirPath = await dataDirPath();
-  const obsidian = get(configAtom);
+  const markpad = get(configAtom);
+
+  const title = await basename(selected.toString());
 
   readDirectory(fullPath).then((files) => {
-    obsidian.lastOpenedDir = fullPath;
-    set(configAtom, obsidian);
-    writeFile(dirPath, JSON.stringify(obsidian));
+    markpad.lastOpenedDir = fullPath;
+    set(configAtom, markpad);
+    writeFile(dirPath, JSON.stringify(markpad));
 
     const sortedNotes = files.sort(
       (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
@@ -97,6 +89,27 @@ export const openNotesAtom = atom(null, async (get, set) => {
     set(openedFolderPathAtom, fullPath);
     set(notesAtom, sortedNotes);
   });
+  updateRecentFolders(set, { title, path: fullPath, lastOpenTime: new Date().getTime() });
+});
+
+export const openNotesUsingPathAtom = atom(null, async (get, set, path: string) => {
+  const dirPath = await dataDirPath();
+  const markpad = get(configAtom);
+
+  const title = await basename(path);
+
+  readDirectory(path).then((files) => {
+    markpad.lastOpenedDir = path;
+    set(configAtom, markpad);
+    writeFile(dirPath, JSON.stringify(markpad));
+
+    const sortedNotes = files.sort(
+      (a: NoteInfo, b: NoteInfo) => b.lastEditTime - a.lastEditTime,
+    );
+    set(openedFolderPathAtom, path);
+    set(notesAtom, sortedNotes);
+  });
+  updateRecentFolders(set, { title, path: path, lastOpenTime: new Date().getTime() });
 });
 
 const selectedNoteAtomAsync = atom(async (get) => {
@@ -181,7 +194,7 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
     lastEditTime: Date.now(),
   };
 
-  set(viewAtom, View.Editor);
+  set(viewAtom, ViewState.Editor);
   set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)]);
   set(selectedNoteIndexAtom, 0);
 });

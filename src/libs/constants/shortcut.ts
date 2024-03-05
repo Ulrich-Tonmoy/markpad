@@ -19,4 +19,8 @@ export const ShortcutKeys = [
     name: "Create New File",
     keys: ["Ctrl", "N"],
   },
+  {
+    name: "Delete Selected File",
+    keys: ["Ctrl", "D"],
+  },
 ];

@@ -25,7 +25,6 @@ export const TitleBar = () => {
   useEffect(() => {
     if (config.isFullscreen) {
       appWindow.maximize();
-      console.log(appWindow);
     }
   }, [config.isFullscreen]);
 

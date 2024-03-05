@@ -1,6 +1,6 @@
 import { LuFileSignature } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { useConfig } from "src/libs/hooks";
+import { useConfig } from "@/libs";
 
 export const NewNoteButton = ({ ...props }: ActionButtonProps) => {
   const { createEmptyNote } = useConfig();

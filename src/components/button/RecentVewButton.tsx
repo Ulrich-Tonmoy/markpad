@@ -1,7 +1,6 @@
 import { ActionButton, ActionButtonProps } from "@/components";
 import { FaClockRotateLeft } from "react-icons/fa6";
-import { ViewState, cn } from "@/libs";
-import { useConfig } from "src/libs/hooks";
+import { ViewState, cn, useConfig } from "@/libs";
 
 export const RecentVewButton = ({ ...props }: ActionButtonProps) => {
   const { view, updateView } = useConfig();

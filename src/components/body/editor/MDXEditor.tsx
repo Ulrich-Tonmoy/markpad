@@ -25,10 +25,9 @@ import {
   imagePlugin,
   InsertImage,
 } from "@mdxeditor/editor";
-import { useEditor } from "src/libs/hooks";
 import "./MDXEditor.css";
 import { useAtomValue } from "jotai";
-import { configAtom } from "@/libs";
+import { configAtom, useEditor } from "@/libs";
 
 export const MDXEditor = () => {
   const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useEditor();

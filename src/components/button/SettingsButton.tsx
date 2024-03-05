@@ -1,7 +1,6 @@
 import { LuCog } from "react-icons/lu";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { ViewState, cn } from "@/libs";
-import { useConfig } from "src/libs/hooks";
+import { ViewState, cn, useConfig } from "@/libs";
 
 export const SettingsButton = ({ ...props }: ActionButtonProps) => {
   const { view, updateView } = useConfig();

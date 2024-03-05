@@ -1,7 +1,6 @@
 import { FaFolderTree } from "react-icons/fa6";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { cn } from "@/libs";
-import { useConfig } from "src/libs/hooks";
+import { cn, useConfig } from "@/libs";
 
 export const SidebarVewButton = ({ ...props }: ActionButtonProps) => {
   const { config, updateConfigData } = useConfig();

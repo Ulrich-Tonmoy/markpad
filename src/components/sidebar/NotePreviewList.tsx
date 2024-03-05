@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { NotePreview } from "@/components";
 import { twMerge } from "tailwind-merge";
-import { useNotesList } from "src/libs/hooks";
+import { useNotesList } from "@/libs";
 
 export type NotePreviewListProps = ComponentProps<"ul"> & {
   onSelect?: () => void;

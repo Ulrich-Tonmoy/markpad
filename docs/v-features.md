@@ -5,6 +5,7 @@
 - [x] Recently Opened Folders Page
 - [x] Keep Window State (Maximize/Minimize)
 - [x] Keyboard shortcut added
+- [x] Project Structure Improved
 
 # 0.0.6
 

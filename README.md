@@ -4,14 +4,15 @@
     <h3>A Simple MarkDown Notepad or Markpad built with Tauri.</h3>
 </div>
 
-> [!NOTE]  
-> [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/markpad/releases)
+> # [!NOTE]
+>
+> ### [Download For Windows From Here](https://github.com/Ulrich-Tonmoy/markpad/releases)
+>
+> ### [Features lists here](./docs/v-features.md)
 
 <div  align="center">
     <img src="./docs/markpad.png" alt="Markpad"/>
 </div>
-
-## [Features lists here](./docs/v-features.md)
 
 ### Technologies
 

@@ -2,6 +2,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import {
   configAtom,
   createEmptyNoteAtom,
+  deleteNoteAtom,
   loadNotesAtom,
   openNotesAtom,
   updateConfigDataAtom,
@@ -16,6 +17,7 @@ export const useConfig = () => {
   const updateView = useSetAtom(updateViewAtom);
   const openNotes = useSetAtom(openNotesAtom);
   const loadNotes = useSetAtom(loadNotesAtom);
+  const deleteNote = useSetAtom(deleteNoteAtom);
   const createEmptyNote = useSetAtom(createEmptyNoteAtom);
 
   return {
@@ -25,6 +27,7 @@ export const useConfig = () => {
     updateView,
     openNotes,
     loadNotes,
+    deleteNote,
     createEmptyNote,
   };
 };

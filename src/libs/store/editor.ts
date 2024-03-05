@@ -4,10 +4,10 @@ import {
   MarkpadConfig,
   ViewState,
   writeFile,
+  selectedNoteIndexAtom,
 } from "@/libs";
 import { dataDir } from "@tauri-apps/api/path";
 import { atom } from "jotai";
-import { selectedNoteIndexAtom } from ".";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;
@@ -27,5 +27,5 @@ export const updateConfigDataAtom = atom(
 
 export const updateViewAtom = atom(null, async (_, set, view: ViewState) => {
   set(viewAtom, view);
-  if (view === ViewState.Settings) set(selectedNoteIndexAtom, null);
+  if (view !== ViewState.Editor) set(selectedNoteIndexAtom, null);
 });

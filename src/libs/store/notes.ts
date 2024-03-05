@@ -14,11 +14,13 @@ import {
   NoteContent,
   NoteInfo,
   MarkpadConfig,
+  configAtom,
+  updateRecentFolders,
+  viewAtom,
 } from "@/libs";
 import { unwrap } from "jotai/utils";
 import { ask, open, save } from "@tauri-apps/api/dialog";
 import { basename } from "@tauri-apps/api/path";
-import { configAtom, updateRecentFolders, viewAtom } from ".";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;

@@ -1,7 +1,7 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { useAtomValue, useSetAtom } from "jotai";
 import { configAtom, selectedNoteAtom, updateConfigDataAtom } from "@/libs";
-import { RecentVewButton, SettingsButton, SidebarVewButton } from ".";
+import { RecentVewButton, SettingsButton, SidebarVewButton } from "@/components";
 import { useEffect } from "react";
 
 export const TitleBar = () => {

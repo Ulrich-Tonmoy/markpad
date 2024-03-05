@@ -2,7 +2,7 @@ import { ComponentProps, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import { useAtomValue, useSetAtom } from "jotai";
 import { clearRecentFoldersAtom, loadRecentFoldersAtom, recentFoldersAtom } from "@/libs";
-import { RecentFolder } from ".";
+import { RecentFolder } from "@/components";
 
 export type RecentFolderListProps = ComponentProps<"ul">;
 

@@ -6,7 +6,7 @@ import { useConfig } from "@/hooks";
 export const RecentVewButton = ({ ...props }: ActionButtonProps) => {
   const { view, updateView } = useConfig();
 
-  const openRecentFolders = async () => {
+  const openRecentFolders = () => {
     view == View.Recent ? updateView(View.Null) : updateView(View.Recent);
   };
 

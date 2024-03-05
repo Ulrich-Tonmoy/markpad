@@ -6,7 +6,7 @@ import { useConfig } from "@/hooks";
 export const OpenFolderButton = ({ ...props }: ActionButtonProps) => {
   const { openNotes, loadNotes } = useConfig();
 
-  const openFolder = async () => {
+  const openFolder = () => {
     openNotes();
   };
 

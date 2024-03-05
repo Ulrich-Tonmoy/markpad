@@ -5,8 +5,8 @@ import { useConfig } from "@/hooks";
 export const NewNoteButton = ({ ...props }: ActionButtonProps) => {
   const { createEmptyNote } = useConfig();
 
-  const handleCreation = async () => {
-    await createEmptyNote();
+  const handleCreation = () => {
+    createEmptyNote();
   };
 
   return (

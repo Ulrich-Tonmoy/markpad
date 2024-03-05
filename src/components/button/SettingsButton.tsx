@@ -6,7 +6,7 @@ import { useConfig } from "@/hooks";
 export const SettingsButton = ({ ...props }: ActionButtonProps) => {
   const { view, updateView } = useConfig();
 
-  const openSettings = async () => {
+  const openSettings = () => {
     view == View.Settings ? updateView(View.Null) : updateView(View.Settings);
   };
 

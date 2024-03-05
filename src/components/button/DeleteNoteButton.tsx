@@ -6,8 +6,8 @@ import { useSetAtom } from "jotai";
 export const DeleteNoteButton = ({ ...props }: ActionButtonProps) => {
   const deleteNote = useSetAtom(deleteNoteAtom);
 
-  const handleDelete = async () => {
-    await deleteNote();
+  const handleDelete = () => {
+    deleteNote();
   };
 
   return (

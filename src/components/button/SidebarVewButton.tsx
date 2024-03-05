@@ -6,9 +6,9 @@ import { useConfig } from "@/hooks";
 export const SidebarVewButton = ({ ...props }: ActionButtonProps) => {
   const { config, updateConfigData } = useConfig();
 
-  const handleSidebarToggle = async () => {
+  const handleSidebarToggle = () => {
     const updatedConfig = { ...config, showSidebar: !config.showSidebar };
-    await updateConfigData(updatedConfig);
+    updateConfigData(updatedConfig);
   };
 
   return (

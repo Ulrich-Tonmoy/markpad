@@ -1,4 +1,5 @@
-import { ViewState, viewAtom } from "@/libs";
+import { ViewState } from "@/libs";
+import { viewAtom } from "@/store";
 import { MDXEditor, RecentFolderList, Settings, WelcomePage } from "@/components";
 import { useAtomValue } from "jotai";
 

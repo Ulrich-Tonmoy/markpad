@@ -8,7 +8,7 @@ import {
   updateConfigDataAtom,
   updateViewAtom,
   viewAtom,
-} from "@/libs";
+} from "@/store";
 
 export const useConfig = () => {
   const config = useAtomValue(configAtom);

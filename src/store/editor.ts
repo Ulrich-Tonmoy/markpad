@@ -4,10 +4,10 @@ import {
   MarkpadConfig,
   ViewState,
   writeFile,
-  selectedNoteIndexAtom,
 } from "@/libs";
 import { dataDir } from "@tauri-apps/api/path";
 import { atom } from "jotai";
+import { selectedNoteIndexAtom } from "@/store";
 
 const dataDirPath = async () => {
   return (await dataDir()) + CONFIG_FILE_NAME;

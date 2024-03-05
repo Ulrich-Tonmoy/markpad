@@ -4,8 +4,8 @@ import {
   openedFolderPathAtom,
   selectedNoteIndexAtom,
   updateViewAtom,
-  ViewState,
-} from "@/libs";
+} from "@/store";
+import { ViewState } from "@/libs";
 
 export const useNotesList = ({ onSelect }: { onSelect?: () => void }) => {
   const updateView = useSetAtom(updateViewAtom);

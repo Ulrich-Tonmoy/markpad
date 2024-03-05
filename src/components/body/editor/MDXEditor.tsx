@@ -27,7 +27,8 @@ import {
 } from "@mdxeditor/editor";
 import "./MDXEditor.css";
 import { useAtomValue } from "jotai";
-import { configAtom, useEditor } from "@/libs";
+import { useEditor } from "@/libs";
+import { configAtom } from "@/store";
 
 export const MDXEditor = () => {
   const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useEditor();

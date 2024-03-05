@@ -1,6 +1,6 @@
 import { FaRegTrashCan } from "react-icons/fa6";
 import { ActionButton, ActionButtonProps } from "@/components";
-import { deleteNoteAtom } from "@/libs";
+import { deleteNoteAtom } from "@/store";
 import { useSetAtom } from "jotai";
 
 export const DeleteNoteButton = ({ ...props }: ActionButtonProps) => {

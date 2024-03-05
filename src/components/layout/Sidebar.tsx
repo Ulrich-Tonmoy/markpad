@@ -1,4 +1,4 @@
-import { configAtom } from "@/libs";
+import { configAtom } from "@/store";
 import { useAtomValue } from "jotai";
 import { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";

@@ -1,4 +1,5 @@
-import { THEMES, setTheme, configAtom, updateConfigDataAtom } from "@/libs";
+import { THEMES, setTheme } from "@/libs";
+import { configAtom, updateConfigDataAtom } from "@/store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
 

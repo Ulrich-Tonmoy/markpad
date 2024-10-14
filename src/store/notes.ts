@@ -16,7 +16,7 @@ import {
   MarkpadConfig,
 } from "@/libs";
 import { unwrap } from "jotai/utils";
-import { ask, open, save } from "@tauri-apps/api/dialog";
+import { ask, open, save } from "@tauri-apps/plugin-dialog";
 import { basename } from "@tauri-apps/api/path";
 import { configAtom, updateRecentFolders, viewAtom } from "@/store";
 
@@ -211,7 +211,7 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
     `Are you sure you want to delete ${fileName}?\nThis action cannot be reverted.`,
     {
       title: `Are you sure you want to delete ${fileName}?`,
-      type: "warning",
+      kind: "warning",
     },
   );
 

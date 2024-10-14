@@ -1,8 +1,9 @@
-import { appWindow } from "@tauri-apps/api/window";
+import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { useAtomValue, useSetAtom } from "jotai";
 import { configAtom, selectedNoteAtom, updateConfigDataAtom } from "@/store";
 import { RecentVewButton, SettingsButton, SidebarVewButton } from "@/components";
 import { useEffect } from "react";
+const appWindow = getCurrentWebviewWindow()
 
 export const TitleBar = () => {
   const config = useAtomValue(configAtom);

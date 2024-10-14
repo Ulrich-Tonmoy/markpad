@@ -1,5 +1,5 @@
-import { invoke } from "@tauri-apps/api";
 import { NoteContent, NoteInfo } from "@/libs";
+import { invoke } from "@tauri-apps/api/core";
 
 export const readDirectory = (folderPath: string): Promise<NoteInfo[]> => {
   return new Promise((resolve, _reject) => {

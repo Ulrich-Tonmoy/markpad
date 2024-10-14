@@ -2,34 +2,23 @@
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist"
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420"
   },
-  "package": {
-    "productName": "Markpad",
-    "version": "0.0.7"
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/logo.png",
+      "icons/logo.ico"
+    ]
   },
-  "tauri": {
-    "allowlist": {
-      "all": true,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "protocol": {
-        "asset": true,
-        "assetScope": ["**"]
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "Markpad",
-      "icon": ["icons/logo.png", "icons/logo.ico"]
-    },
-    "security": {
-      "csp": null
-    },
+  "productName": "Markpad",
+  "mainBinaryName": "Markpad",
+  "version": "0.0.7",
+  "identifier": "Markpad",
+  "plugins": {},
+  "app": {
     "windows": [
       {
         "fullscreen": false,
@@ -44,6 +33,15 @@
         "transparent": true,
         "titleBarStyle": "Visible"
       }
-    ]
+    ],
+    "security": {
+      "assetProtocol": {
+        "scope": [
+          "**"
+        ],
+        "enable": true
+      },
+      "csp": null
+    }
   }
 }

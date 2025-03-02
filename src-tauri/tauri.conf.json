@@ -1,31 +1,20 @@
 {
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "markpad",
+  "version": "0.0.8",
+  "identifier": "com.markpad.app",
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
-    "frontendDist": "../dist",
-    "devUrl": "http://localhost:1420"
+    "beforeDevCommand": "bun run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "bun run build",
+    "frontendDist": "../dist"
   },
-  "bundle": {
-    "active": true,
-    "targets": "all",
-    "icon": [
-      "icons/logo.png",
-      "icons/logo.ico"
-    ]
-  },
-  "productName": "Markpad",
-  "mainBinaryName": "Markpad",
-  "version": "0.0.7",
-  "identifier": "Markpad",
-  "plugins": {},
   "app": {
     "windows": [
       {
-        "fullscreen": false,
-        "resizable": true,
         "title": "Markpad",
-        "width": 1000,
-        "height": 700,
+        "width": 800,
+        "height": 600,
         "minWidth": 500,
         "minHeight": 350,
         "decorations": false,
@@ -35,13 +24,12 @@
       }
     ],
     "security": {
-      "assetProtocol": {
-        "scope": [
-          "**"
-        ],
-        "enable": true
-      },
       "csp": null
     }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": ["icons/logo.png", "icons/logo.ico"]
   }
 }
